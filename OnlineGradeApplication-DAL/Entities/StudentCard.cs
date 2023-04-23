@@ -1,5 +1,4 @@
-﻿namespace OnlineGradeApplication_DAL.Entities;
-
+namespace OnlineGradeApplication_DAL.Entities;
 public partial class StudentCard
 {
     public int StudentCardId { get; set; }

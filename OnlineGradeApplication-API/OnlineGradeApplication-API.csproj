@@ -16,7 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnlineGradeApplication-BLL\OnlineGradeApplication-BLL.csproj" />
     <ProjectReference Include="..\OnlineGradeApplication-DAL\OnlineGradeApplication-DAL.csproj" />
   </ItemGroup>
 

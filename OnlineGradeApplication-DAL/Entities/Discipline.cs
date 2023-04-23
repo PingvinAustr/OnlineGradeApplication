@@ -1,5 +1,4 @@
-﻿namespace OnlineGradeApplication_DAL.Entities;
-
+namespace OnlineGradeApplication_DAL.Entities;
 public partial class Discipline
 {
     public int Id { get; set; }

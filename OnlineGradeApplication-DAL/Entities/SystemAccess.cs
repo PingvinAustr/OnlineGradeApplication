@@ -1,4 +1,4 @@
-﻿namespace OnlineGradeApplication_DAL.Entities;
+namespace OnlineGradeApplication_DAL.Entities;
 
 public partial class SystemAccess
 {

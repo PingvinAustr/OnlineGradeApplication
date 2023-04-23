@@ -73,7 +73,6 @@ builder.Services.AddDbContext<OnlineGradeApplication_DAL.Entities.OnlineGradesDb
 OnlineGradeApplication_DAL.Entities.OnlineGradesDbContext context = new OnlineGradeApplication_DAL.Entities.OnlineGradesDbContext();
 Console.WriteLine(context.Roles.Count());
 
-
 var app = builder.Build();
 
 
