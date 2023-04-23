@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
 namespace OnlineGradeApplication_DAL.Entities;
-
 public partial class StudentCard
 {
     public int StudentCardId { get; set; }
