@@ -6,8 +6,8 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
     {
         List<Role> GetRolesAsync();
         Role GetRoleAsync(int id);
+        Role AddRoleAsync(Role role);
         /*
-        Task<Role> AddRoleAsync(Role role);
         Task<Role> UpdateRoleAsync(Role role);
         Task DeleteRoleAsync(int id);
         */

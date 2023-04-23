@@ -17,6 +17,13 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
             var role = _context.Roles.FirstOrDefault(x=>x.RoleId == id);
             return role;
         }
+        public Role AddRoleAsync(Role role)
+        {
+            var _context = new OnlineGradesDbContext();
+            _context.Roles.Add(role);
+            _context.SaveChanges();
+            return role;
+        }
         /*
         Task<Role> AddRoleAsync(Role role);
         Task<Role> UpdateRoleAsync(Role role);

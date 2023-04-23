@@ -32,5 +32,12 @@ namespace OnlineGradeApplication_API.Controllers
             return Ok(role);
 
         }
+
+        [HttpPost]
+        public ActionResult<OnlineGradeApplication_BLL.DTOs.RoleDTO> AddRole(OnlineGradeApplication_BLL.DTOs.RoleDTO role)
+        {
+            _roleRepository.AddRoleAsync(role);
+            return Ok(role);
+        }
     }
 }
