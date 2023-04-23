@@ -28,5 +28,12 @@ namespace OnlineGradeApplication_BLL.Interfaces.Implementations
             RoleDTO role = _RoleMapper.Map<Role,RoleDTO>(data);
             return role;
         }
+
+        public RoleDTO AddRoleAsync(RoleDTO role)
+        {
+            Role data = _RoleMapper.Map<RoleDTO, Role>(role);
+            _role.AddRoleAsync(data);
+            return role;
+        }
     }
 }

@@ -6,5 +6,7 @@ namespace OnlineGradeApplication_BLL.Interfaces.Abstractions
     {
         List<RoleDTO> GetRolesAsync();
         RoleDTO GetRoleAsync(int id);
+
+        RoleDTO AddRoleAsync(RoleDTO role);
     }
 }
