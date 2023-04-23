@@ -1,31 +1,22 @@
 ﻿using OnlineGradeApplication_DAL.Entities;
 using OnlineGradeApplication_DAL.Interfaces.Abstractions;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace OnlineGradeApplication_DAL.Interfaces.Implementations
 {
     public class AssignmentTypeRepository : IAssignmentTypeRepository
     {
-        private readonly OnlineGradesDbContext _context;
-
-        public AssignmentTypeRepository(OnlineGradesDbContext context)
+        public List<AssignmentType> GetAssignmentTypesAsync()
         {
-            _context = context;
+            var _context = new OnlineGradesDbContext();
+            return _context.AssignmentTypes.ToList();
         }
 
-        public async Task<List<AssignmentType>> GetAssignmentTypesAsync()
+        public AssignmentType GetAssignmentTypeAsync(int id)
         {
-            return await _context.AssignmentTypes.ToListAsync();
+            var _context = new OnlineGradesDbContext();
+            return _context.AssignmentTypes.FirstOrDefault(x => x.Id == id);
         }
-
-        public async Task<AssignmentType> GetAssignmentTypeAsync(int id)
-        {
-            return await _context.AssignmentTypes.FindAsync(id);
-        }
-
+        /*
         public async Task AddAssignmentTypeAsync(AssignmentType assignmentType)
         {
             _context.AssignmentTypes.Add(assignmentType);
@@ -47,5 +38,6 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
                 await _context.SaveChangesAsync();
             }
         }
+        */
     }
 }

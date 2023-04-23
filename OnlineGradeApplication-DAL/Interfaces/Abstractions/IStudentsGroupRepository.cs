@@ -4,10 +4,12 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
 {
     public interface IStudentsGroupRepository
     {
-        Task<List<StudentsGroup>> GetStudentsGroupsAsync();
-        Task<StudentsGroup> GetStudentsGroupAsync(int id);
+        List<StudentsGroup> GetStudentsGroupsAsync();
+        StudentsGroup GetStudentsGroupAsync(int id);
+        /*
         Task<StudentsGroup> AddStudentsGroupAsync(StudentsGroup studentsGroup);
         Task<StudentsGroup> UpdateStudentsGroupAsync(StudentsGroup studentsGroup);
         Task DeleteStudentsGroupAsync(int id);
+        */
     }
 }

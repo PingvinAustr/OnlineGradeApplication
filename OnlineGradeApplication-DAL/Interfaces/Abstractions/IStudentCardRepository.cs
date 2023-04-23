@@ -4,10 +4,12 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
 {
     public interface IStudentCardRepository
     {
-        Task<List<StudentCard>> GetStudentCardsAsync();
-        Task<StudentCard> GetStudentCardAsync(int id);
+        List<StudentCard> GetStudentCardsAsync();
+        StudentCard GetStudentCardAsync(int id);
+        /*
         Task<StudentCard> AddStudentCardAsync(StudentCard studentCard);
         Task<StudentCard> UpdateStudentCardAsync(StudentCard studentCard);
         Task DeleteStudentCardAsync(int id);
+        */
     }
 }

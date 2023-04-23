@@ -4,10 +4,12 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
 {
     public interface IAssignmentTypeRepository
     {
-        Task<List<AssignmentType>> GetAssignmentTypesAsync();
-        Task<AssignmentType> GetAssignmentTypeAsync(int id);
+        List<AssignmentType> GetAssignmentTypesAsync();
+        AssignmentType GetAssignmentTypeAsync(int id);
+        /*
         Task AddAssignmentTypeAsync(AssignmentType assignmentType);
         Task UpdateAssignmentTypeAsync(AssignmentType assignmentType);
         Task DeleteAssignmentTypeAsync(int id);
+        */
     }
 }
