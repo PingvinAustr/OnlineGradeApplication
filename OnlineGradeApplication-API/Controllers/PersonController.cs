@@ -30,7 +30,13 @@ namespace OnlineGradeApplication_API.Controllers
                 return NotFound();
             }
             return Ok(person);
+        }
 
+        [HttpGet("GetPersonRoleById")]
+        public ActionResult<int> GetPersonRoleById(int userId)
+        {
+            var person = _personRepository.GetPersonAsync(userId);
+            return Ok(person.RoleId);
         }
     }
 }

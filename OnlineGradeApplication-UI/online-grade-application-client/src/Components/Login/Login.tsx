@@ -2,18 +2,39 @@ import "./Login.styles.css";
 import React, { useState } from 'react';
 import { Button, Form, Input } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
 import { useNavigate } from 'react-router-dom';
+import {useAuth} from "../../Auth/AuthContext";
+
+import {loginUser, getUserRole} from "../../Requests/Requests";
+
+import {toast} from "react-toastify";
+
+const animation = require('../../assets/media/videos/gradebook.gif');
 
 const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const { setUserId, setUserRoleId } = useAuth();
 
-    const onFinish = (values: any) => {
+
+    const onFinish = async (values: any) => {
         setLoading(true);
         console.log('Received values of form: ', values);
-        // Add your login logic here
-
-        const isAuthenticated = true; // Change this based on your authentication logic
+        let isAuthenticated = false;
+        try {
+            const data = await loginUser(values.username, values.password);
+            if (data) {
+                isAuthenticated = true;
+                const userRole = await (getUserRole(data));
+                console.log("UserID:" + data);
+                console.log("RoleID:" + userRole);
+                setUserId(data);
+                setUserRoleId(userRole);
+            }
+        } catch (error) {
+            toast.error("Пароль та логін не співпадають, спробуйте ще раз");
+        }
 
         if (isAuthenticated) {
             navigate('/main-menu');
@@ -22,36 +43,39 @@ const Login: React.FC = () => {
     };
 
     return (
+        <React.Fragment>
+            <img src={animation} alt="this slowpoke moves"  />
         <Form
             name="login"
             className="login-form"
             initialValues={{ remember: true }}
             onFinish={onFinish}
         >
-            <div className="login-form-heading">Online Grades Application - Login form</div>
+            <div className="login-form-heading">Електронний журнал - Форма авторизації</div>
             <Form.Item
                 name="username"
-                rules={[{ required: true, message: 'Please input your Username!' }]}
+                rules={[{ required: true, message: 'Будь-ласка введіть логін!' }]}
             >
-                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Логін" />
             </Form.Item>
             <Form.Item
                 name="password"
-                rules={[{ required: true, message: 'Please input your Password!' }]}
+                rules={[{ required: true, message: 'Будь-ласка введіть пароль!' }]}
             >
                 <Input
                     prefix={<LockOutlined className="site-form-item-icon" />}
                     type="password"
-                    placeholder="Password"
+                    placeholder="Пароль"
                 />
             </Form.Item>
 
             <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
-                    Log in
+                    Авторизуватись
                 </Button>
             </Form.Item>
         </Form>
+        </React.Fragment>
     );
 };
 

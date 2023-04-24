@@ -32,5 +32,14 @@ namespace OnlineGradeApplication_API.Controllers
             return Ok(systemAccess);
 
         }
+
+        [HttpPost("/loginUser")]
+        public ActionResult<int> LoginUser(string username, string password)
+        {
+            List<OnlineGradeApplication_BLL.DTOs.SystemAccessDTO> systemAccesses = _systemAccessRepository.GetSystemAccessesAsync();
+            var existingUser = systemAccesses.Find(x => x.Username == username && x.UserPassword == password);
+            if (existingUser == null) return NotFound();
+            else return existingUser.Id;
+        }
     }
 }
