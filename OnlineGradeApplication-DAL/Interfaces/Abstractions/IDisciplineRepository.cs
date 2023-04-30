@@ -1,4 +1,5 @@
 ﻿using OnlineGradeApplication_DAL.Entities;
+using OnlineGradeApplication_DAL.Responses;
 
 namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
 {
@@ -6,10 +7,9 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
     {
         List<Discipline> GetDisciplinesAsync();
         Discipline GetDisciplineAsync(int id);
-        /*
-        Task<Discipline> AddDisciplineAsync(Discipline discipline);
-        Task<Discipline> UpdateDisciplineAsync(Discipline discipline);
-        Task DeleteDisciplineAsync(int id);
-        */
+        
+        List<StudentDisciplinesResponse> GetDisciplinesForUser(int userId);
+
+        bool DeleteGroupTeacherDisciplineEntry(int id);
     }
 }

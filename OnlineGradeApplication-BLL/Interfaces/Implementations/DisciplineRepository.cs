@@ -1,5 +1,6 @@
 ﻿using OnlineGradeApplication_BLL.Interfaces.Abstractions;
 using OnlineGradeApplication_BLL.DTOs;
+using OnlineGradeApplication_BLL.Responses;
 using OnlineGradeApplication_DAL.Entities;
 using AutoMapper;
 
@@ -27,6 +28,19 @@ namespace OnlineGradeApplication_BLL.Interfaces.Implementations
             var data = _discipline.GetDisciplineAsync(id);
             DisciplineDTO discipline = _DisciplineMapper.Map<Discipline, DisciplineDTO>(data);
             return discipline;
+        }
+
+        public List<StudentDisciplinesResponse> GetDisciplinesForUser(int userId)
+        {
+            var data = _discipline.GetDisciplinesForUser(userId);
+            List<StudentDisciplinesResponse> disciplines = _DisciplineMapper.Map<List<OnlineGradeApplication_DAL.Responses.StudentDisciplinesResponse>, List<OnlineGradeApplication_BLL.Responses.StudentDisciplinesResponse>>(data);
+            return disciplines;
+        }
+
+        public bool DeleteGroupTeacherDisciplineEntry(int id)
+        {
+            var data = _discipline.DeleteGroupTeacherDisciplineEntry(id);
+            return data;
         }
     }
 }

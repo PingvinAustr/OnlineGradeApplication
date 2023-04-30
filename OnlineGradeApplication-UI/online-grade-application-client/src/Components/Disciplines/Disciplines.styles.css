@@ -1,0 +1,11 @@
+.disciplineHeading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.crudButtonsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

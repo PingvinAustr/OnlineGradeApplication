@@ -38,5 +38,12 @@ namespace OnlineGradeApplication_API.Controllers
             var person = _personRepository.GetPersonAsync(userId);
             return Ok(person.RoleId);
         }
+
+        [HttpGet("GetTeachers")]
+        public ActionResult<int> GetTeachers()
+        {
+            var teachers = _personRepository.GetPeopleAsync().Where(x => x.RoleId == 1002);
+            return Ok(teachers);
+        }
     }
 }

@@ -32,5 +32,27 @@ namespace OnlineGradeApplication_API.Controllers
             return Ok(discipline);
 
         }
+
+        [HttpGet("/GetDisciplinesByRoleIdForUser")]
+        public ActionResult<OnlineGradeApplication_BLL.Responses.StudentDisciplinesResponse> GetDisciplinesForUser(int userId)
+        {
+            var disciplines = _disciplineRepository.GetDisciplinesForUser(userId);
+
+            if (disciplines == null)
+            {
+                return NotFound();
+            }
+            return Ok(disciplines);
+
+        }
+
+        [HttpPost("/DeleteDisciplines")]
+        public ActionResult<bool> DeleteDisciplines(int id)
+        {
+            var result = _disciplineRepository.DeleteGroupTeacherDisciplineEntry(id);
+            if (result) return Ok(result);
+            else return NoContent();
+
+        }
     }
 }
