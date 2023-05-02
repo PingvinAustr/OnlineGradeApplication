@@ -54,5 +54,13 @@ namespace OnlineGradeApplication_API.Controllers
             else return NoContent();
 
         }
+
+        [HttpPost("/EditDisciplineInSchedule")]
+        public ActionResult<bool> EditDisciplineInSchedule(int id, int teacherId, int groupId, int disciplineId)
+        {
+            var result = _disciplineRepository.EditDisciplineInSchedule(id, teacherId, groupId, disciplineId);
+            if (result) return Ok(result);
+            else return NoContent();
+        }
     }
 }

@@ -11,5 +11,7 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
         List<StudentDisciplinesResponse> GetDisciplinesForUser(int userId);
 
         bool DeleteGroupTeacherDisciplineEntry(int id);
+
+        bool EditDisciplineInSchedule(int id, int teacherId, int groupId, int disciplineId);
     }
 }

@@ -125,5 +125,22 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
                 return false;
             }
         }
+
+        public bool EditDisciplineInSchedule(int id, int teacherId, int groupId, int disciplineId)
+        {
+            try
+            {
+                var _context = new OnlineGradesDbContext();
+                _context.TeachersGroups.Where(x => x.Id == id).FirstOrDefault().TeacherId = teacherId;
+                _context.TeachersGroups.Where(x => x.Id == id).FirstOrDefault().GroupId = groupId;
+                _context.TeachersGroups.Where(x => x.Id == id).FirstOrDefault().DisciplineId = disciplineId;
+                _context.SaveChanges();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

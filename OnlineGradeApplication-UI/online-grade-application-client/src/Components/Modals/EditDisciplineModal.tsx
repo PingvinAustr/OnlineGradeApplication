@@ -8,6 +8,15 @@ interface EditDisciplineModalProps {
     visible: boolean;
     onSave: () => void;
     onCancel: () => void;
+    onUpdate: () => void;
+    record: {
+        id: string;
+        student: any;
+        teacher: any;
+        group: any;
+        discipline: any;
+        teacherGroupDbId: number;
+    } | undefined;
 }
 
 interface Group {
@@ -26,27 +35,32 @@ interface Discipline {
     disciplineName: string;
 }
 
-const EditDisciplineModal: React.FC<EditDisciplineModalProps> = ({ visible, onSave, onCancel }) => {
+const EditDisciplineModal: React.FC<EditDisciplineModalProps> = ({ visible, onSave, onCancel, record , onUpdate}) => {
     const [groups, setGroups] = useState<Group[]>([]);
     const [teachers, setTeachers] = useState<Teacher[]>([]);
     const [disciplines, setDisciplines] = useState<Discipline[]>([]);
 
+    const [selectedGroup, setSelectedGroup] = useState<string | null>(record?.group.groupId);
+    const [selectedTeacher, setSelectedTeacher] = useState<string | null>(record?.teacher.id);
+    const [selectedDiscipline, setSelectedDiscipline] = useState<string | null>(record?.discipline.id);
+
+    useEffect(() => {
+        if (record) {
+            setSelectedGroup(record.group.groupId);
+            setSelectedTeacher(record.teacher.id);
+            setSelectedDiscipline(record.discipline.id);
+        }
+    }, [record]);
+
     const fetchGroups = async () => {
         const response = await axios.get("https://localhost:7264/api/Group");
         const data = response.data;
-        console.log(data.$values);
-        console.log(data.$values);
-        console.log(data.$values);
-        console.log(data.$values);
-        console.log(data.$values);
-        console.log(data.$values);
 
         if (data && data.$values) {
             return data.$values;
         }
         return [];
     };
-
 
     const fetchTeachers = async () => {
         const response = await axios.get("https://localhost:7264/api/Person/GetTeachers");
@@ -81,6 +95,31 @@ const EditDisciplineModal: React.FC<EditDisciplineModalProps> = ({ visible, onSa
         fetchData();
     }, []);
 
+    const handleSubmit = async () => {
+        try {
+            console.log(record);
+            console.log(selectedGroup);
+            console.log(selectedTeacher);
+            console.log(selectedDiscipline);
+            if (record && selectedGroup && selectedTeacher && selectedDiscipline) {
+                const response = await axios.post(
+                    `https://localhost:7264/EditDisciplineInSchedule?id=${record.teacherGroupDbId}&teacherId=${selectedTeacher}&groupId=${selectedGroup}&disciplineId=${selectedDiscipline}`
+                );
+                // Handle the response if necessary
+                console.log(response);
+                // Call the onSave prop to update the parent component
+                onSave();
+                onUpdate();
+            } else {
+                // Show an error message if any field is not selected
+                console.error('All fields must be selected');
+            }
+        } catch (error) {
+            console.error('Error updating the discipline:', error);
+        }
+    };
+
+
     let groupOptions = null;
     if (Array.isArray(groups)) {
         groupOptions = groups.map((group) => (
@@ -112,27 +151,33 @@ const EditDisciplineModal: React.FC<EditDisciplineModalProps> = ({ visible, onSa
         <Modal
             title="Дисципліна. Редагування"
             visible={visible}
-            onOk={onSave}
+            onOk={handleSubmit}
             onCancel={onCancel}
         >
             <>
                 <Select
+                    value={selectedGroup}
                     placeholder="Група"
                     style={{ width: '100%', marginBottom: '16px' }}
+                    onChange={(value: string) => setSelectedGroup(value)}
                 >
                     {groupOptions}
                 </Select>
 
                 <Select
+                    value={selectedTeacher}
                     placeholder="Викладач"
                     style={{ width: '100%', marginBottom: '16px' }}
+                    onChange={(value: string) => setSelectedTeacher(value)}
                 >
                     {teacherOptions}
                 </Select>
 
                 <Select
+                    value={selectedDiscipline}
                     placeholder="Дисципліна"
                     style={{ width: '100%' }}
+                    onChange={(value: string) => setSelectedDiscipline(value)}
                 >
                     {disciplineOptions}
                 </Select>

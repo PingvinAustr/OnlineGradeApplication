@@ -9,5 +9,6 @@ namespace OnlineGradeApplication_BLL.Interfaces.Abstractions
         DisciplineDTO GetDisciplineAsync(int id);
         List<StudentDisciplinesResponse> GetDisciplinesForUser(int userId);
         bool DeleteGroupTeacherDisciplineEntry(int id);
+        bool EditDisciplineInSchedule(int id, int teacherId, int groupId, int disciplineId);
     }
 }

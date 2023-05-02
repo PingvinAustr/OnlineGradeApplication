@@ -42,5 +42,11 @@ namespace OnlineGradeApplication_BLL.Interfaces.Implementations
             var data = _discipline.DeleteGroupTeacherDisciplineEntry(id);
             return data;
         }
+
+        public bool EditDisciplineInSchedule(int id, int teacherId, int groupId, int disciplineId)
+        {
+            var data=_discipline.EditDisciplineInSchedule(id, teacherId, groupId, disciplineId);
+            return data;
+        }
     }
 }

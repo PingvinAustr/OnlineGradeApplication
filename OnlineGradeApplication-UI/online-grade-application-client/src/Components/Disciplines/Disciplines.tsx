@@ -11,7 +11,8 @@ const Disciplines: React.FC = () => {
     const { userId, userRoleId} = useAuth();
     const [disciplines, setDisciplines] = useState<Array<{ id: string, student: any, teacher: any, group: any, discipline: any, teacherGroupDbId:number }>>([]);
     const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
-    const [editingRecord, setEditingRecord] = useState<{ id: string, student: any, teacher: any, group: any, discipline: any, teacherGroupDbId: number } | null>(null);
+    const [editingRecord, setEditingRecord] = useState<{ id: string, student: any, teacher: any, group: any, discipline: any, teacherGroupDbId: number } | undefined
+        >(undefined);
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
 
@@ -81,6 +82,7 @@ const Disciplines: React.FC = () => {
         if (selectedRowKeys.length === 1) {
             const record = disciplines.find(d => d.teacherGroupDbId === parseInt(selectedRowKeys[0].toString()));
             console.log(record);
+            setEditingRecord(record);
             setEditModalVisible(true);
         } else {
             setShowPopup(true);
@@ -117,6 +119,7 @@ const Disciplines: React.FC = () => {
             <Table dataSource={disciplines} columns={columns} rowKey={(record) => `${record.teacherGroupDbId}`} rowSelection={userRoleId === 1 || userRoleId === 2 ? rowSelection : undefined} />
             {showPopup && <InfoPopup content="Будь ласка оберіть лише 1 запис. Ви не можете редагувати декілька записів одночасно" />}
             <EditDisciplineModal
+                record={editingRecord}
                 visible={editModalVisible}
                 onSave={() => {
                     // Implement save logic here
@@ -125,6 +128,7 @@ const Disciplines: React.FC = () => {
                 onCancel={() => {
                     setEditModalVisible(false);
                 }}
+                onUpdate={fetchDisciplines}
             />
         </div>
     );
