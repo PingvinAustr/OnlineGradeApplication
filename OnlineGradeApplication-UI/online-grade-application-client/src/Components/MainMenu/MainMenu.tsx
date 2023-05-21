@@ -1,23 +1,161 @@
-// src/components/MainMenu.tsx
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import './MainMenu.styles.css';
+import {useAuth} from "../../Auth/AuthContext";
+import {deleteGroupTeacherDisciplineEntry, getUserDataById, setCurrentUser} from "../../Requests/Requests";
 import { Layout, Menu } from 'antd';
-
+import {BaseTSConstants} from "../../assets/constants/BaseTSConstants";
+import { Dropdown, Menu as AntMenu } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import Disciplines from '../Disciplines/Disciplines';
+import Students from "../Students/Students";
+import Groups from "../Groups/Groups";
+import SystemAccesses from "../SystemAccesses/SystemAccesses";
+import GroupList from "../GroupList/GroupList";
+import Cookies from "js-cookie";
 const { Sider, Content } = Layout;
 
+
+
+const userAvatar = require("../../assets/media/avatars/man1.png");
+
 const MainMenu: React.FC = () => {
+    const { userId, userRoleId, setUserId, setUserRoleId } = useAuth(); // Destructure setUserId and setUserRoleId
+    const navigate = useNavigate(); // Add useNavigate hook
+
+    const [userName, setUserName] = useState<string>('');
+    const [selectedMenuItem, setSelectedMenuItem] = useState<string>('');
+
+
+    const handleMenuClick = (e: any) => {
+        setSelectedMenuItem(e.key);
+    };
+
+    const renderContent = () => {
+        switch (selectedMenuItem) {
+            case 'Disciplines':
+                return <Disciplines />;
+             case 'Students':
+                 return <Students />;
+            case 'Groups':
+                return <Groups/>
+            case 'SystemAccesses':
+                return  <SystemAccesses/>
+            case 'GroupList':
+                return <GroupList/>
+            default:
+                return null;
+        }
+    };
+
+    useEffect(() => {
+        const isUserLoggedIn = Cookies.get('isUserLoggedIn');
+        if (isUserLoggedIn=='false' || !Cookies.get('isUserLoggedIn')) navigate('/');
+        else {
+            let lastTab:string = Cookies.get('lastTab') as string;
+            setSelectedMenuItem(lastTab);
+            setCurrentUser(parseInt(Cookies.get('userId') as string));
+        }
+        console.log('Current user ID:', userId);
+        console.log('Current user role ID:', userRoleId);
+
+        const fetchUserData = async () => {
+            const currentUserData = await getUserDataById(userId);
+            console.log(currentUserData);
+            setUserName(currentUserData.firstName + ' ' + currentUserData.lastName);
+        };
+
+        if (userId) {
+            fetchUserData();
+        }
+
+    }, [userId, userRoleId]);
+
+    const renderMenuItems = () => {
+        if (userRoleId === BaseTSConstants.StudentRoleId) {
+            return (
+                <>
+                    <Menu.Item key="1">Оцінки</Menu.Item>
+                    <Menu.Item key="2">Завдання</Menu.Item>
+                    <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
+                    <Menu.Item key="4">Викладачі</Menu.Item>
+                    <Menu.Item key="GroupList">Список групи</Menu.Item>
+                </>
+            );
+        } else if (userRoleId === BaseTSConstants.TeacherRoleId) {
+            return (
+                <>
+                    <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
+                    <Menu.Item key="Students">Студенти</Menu.Item>
+                    <Menu.Item key="Groups">Групи</Menu.Item>
+                    <Menu.Item key="4">Завдання</Menu.Item>
+                    <Menu.Item key="5">Оцінки</Menu.Item>
+                </>
+            );
+        }
+        else if (userRoleId === BaseTSConstants.AdministrationPersonRoleId) {
+            return (
+                <>
+                    <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
+                    <Menu.Item key="Students">Студенти</Menu.Item>
+                    <Menu.Item key="Groups">Групи</Menu.Item>
+                    <Menu.Item key="4">Завдання</Menu.Item>
+                    <Menu.Item key="5">Оцінки</Menu.Item>
+                    <Menu.Item key="SystemAccesses">Користувачі системи</Menu.Item>
+                </>
+            );
+        }
+        else if (userRoleId === BaseTSConstants.SystemAdminRoleId) {
+            return (
+                <>
+                    <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
+                    <Menu.Item key="Students">Студенти</Menu.Item>
+                    <Menu.Item key="Groups">Групи</Menu.Item>
+                    <Menu.Item key="4">Завдання</Menu.Item>
+                    <Menu.Item key="5">Оцінки</Menu.Item>
+                    <Menu.Item key="SystemAccesses">Користувачі системи</Menu.Item>
+                </>
+            );
+        }
+    };
+
+    const onUserLogout = () => {
+        setUserId(null);
+        setUserRoleId(null);
+        Cookies.set("isUserLoggedIn", "false");
+        Cookies.set("userId", "");
+        Cookies.set("userRoleId", "");
+        Cookies.set("lastTab", "");
+        navigate('/');
+    };
+
+    const menu = (
+        <AntMenu>
+            <AntMenu.Item onClick={onUserLogout}>Log out</AntMenu.Item>
+        </AntMenu>
+    );
+
     return (
-        <Layout style={{ minHeight: '100vh' }}>
+        <Layout style={{ minHeight: '100vh', width:'100vw' }}>
             <Sider>
-                <Menu theme="dark" mode="inline">
-                    {/* Add menu items here */}
-                    <Menu.Item key="1">Menu Item 1</Menu.Item>
-                    <Menu.Item key="2">Menu Item 2</Menu.Item>
+                <div className='menuHeading'>Меню</div>
+                <Menu theme="dark" mode="inline" onClick={handleMenuClick}>
+                    {renderMenuItems()}
                 </Menu>
             </Sider>
             <Layout>
+                <div id={"currentTabHeading"}>
+                    <div className={'currentUserBlock'}>Привіт, {userName}!
+                        <img src={userAvatar}/>
+                        <Dropdown overlay={menu} placement="bottomRight">
+                            <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
+                                <DownOutlined />
+                            </a>
+                        </Dropdown>
+                    </div>
+                </div>
                 <Content>
-                    {/* Add main content here */}
-                    <div>Main content goes here</div>
+                    {renderContent()}
                 </Content>
             </Layout>
         </Layout>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGradeApplication_BLL.Interfaces.Abstractions;
+using Serilog;
 
 namespace OnlineGradeApplication_API.Controllers
 {
@@ -27,8 +28,10 @@ namespace OnlineGradeApplication_API.Controllers
             var role = _roleRepository.GetRoleAsync(id);
             if (role == null)
             {
+                Log.Warning($"[API][Role][UserId:{CurrentUser.currentUserId}] - GetRole - NotFound with id={id}");
                 return NotFound();
             }
+            Log.Information($"[API][Role][UserId:{CurrentUser.currentUserId}] - GetRole - Success");
             return Ok(role);
 
         }
@@ -36,8 +39,17 @@ namespace OnlineGradeApplication_API.Controllers
         [HttpPost]
         public ActionResult<OnlineGradeApplication_BLL.DTOs.RoleDTO> AddRole(OnlineGradeApplication_BLL.DTOs.RoleDTO role)
         {
-            _roleRepository.AddRoleAsync(role);
-            return Ok(role);
+            try
+            {
+                _roleRepository.AddRoleAsync(role);
+                Log.Information($"[API][Role][UserId:{CurrentUser.currentUserId}] - AddRole - Success");
+                return Ok(role);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[API][Role][UserId:{CurrentUser.currentUserId}] - AddRole - Fail - {ex.Message}");
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

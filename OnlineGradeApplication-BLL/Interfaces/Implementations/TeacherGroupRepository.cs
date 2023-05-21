@@ -28,5 +28,10 @@ namespace OnlineGradeApplication_BLL.Interfaces.Implementations
             TeachersGroupDTO teachersGroup = _TeacherGroupMapper.Map<TeachersGroup, TeachersGroupDTO>(data);
             return teachersGroup;
         }
+
+        public void AddTeacherGroupEntry(TeachersGroupDTO group)
+        {
+            _teachersGroups.AddTeacherGroupEntry(_TeacherGroupMapper.Map<TeachersGroupDTO,TeachersGroup>(group));
+        }
     }
 }

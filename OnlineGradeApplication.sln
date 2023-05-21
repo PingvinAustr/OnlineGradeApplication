@@ -4,7 +4,7 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGradeApplication-API", "OnlineGradeApplication-API\OnlineGradeApplication-API.csproj", "{A589093C-9D4D-4376-9339-A953DD84E76E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineGradeApplication-DAL", "OnlineGradeApplication-DAL\OnlineGradeApplication-DAL.csproj", "{B6C6EE37-EB82-46CE-A27A-DB26783BDA98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGradeApplication-DAL", "OnlineGradeApplication-DAL\OnlineGradeApplication-DAL.csproj", "{B6C6EE37-EB82-46CE-A27A-DB26783BDA98}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineGradeApplication-BLL", "OnlineGradeApplication-BLL\OnlineGradeApplication-BLL.csproj", "{8F6A3404-F5F8-46CE-8373-7E7027BF669F}"
 EndProject

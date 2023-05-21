@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using OnlineGradeApplication_BLL.DTOs;
+using OnlineGradeApplication_BLL.Responses;
+using OnlineGradeApplication_DAL.Responses;
 using OnlineGradeApplication_DAL.Entities;
 
 namespace OnlineGradeApplication_BLL.Mapper
@@ -23,6 +25,10 @@ namespace OnlineGradeApplication_BLL.Mapper
             CreateMap<TeacherCard, TeacherCardDTO>().ReverseMap();
             CreateMap<TeacherPosition, TeacherPositionDTO>().ReverseMap();
             CreateMap<TeachersGroup, TeachersGroupDTO>().ReverseMap();
+            CreateMap<OnlineGradeApplication_DAL.Responses.StudentDisciplinesResponse, OnlineGradeApplication_BLL.Responses.StudentDisciplinesResponse>().ReverseMap();
+            CreateMap<OnlineGradeApplication_DAL.Responses.GetStudentsResponse, OnlineGradeApplication_BLL.Responses.GetStudentsResponse>().ReverseMap();
+            CreateMap<OnlineGradeApplication_DAL.Responses.GetGroups, OnlineGradeApplication_BLL.Responses.GetGroups>().ReverseMap();
+            CreateMap<OnlineGradeApplication_DAL.Responses.GetSystemUsers, OnlineGradeApplication_BLL.Responses.GetSystemUsers>().ReverseMap();
         }
     }
 }

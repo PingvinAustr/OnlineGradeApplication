@@ -1,0 +1,100 @@
+2023-05-20 12:22:35.124 +03:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2023-05-20 12:22:35.206 +03:00 [DBG] Hosting starting
+2023-05-20 12:22:35.356 +03:00 [DBG] Using development certificate: CN=localhost (Thumbprint: 35A8D47BEF9428CEE90970BDE51711F5A5D36CAB)
+2023-05-20 12:22:35.399 +03:00 [INF] Now listening on: https://localhost:7264
+2023-05-20 12:22:35.401 +03:00 [INF] Now listening on: http://localhost:5264
+2023-05-20 12:22:35.402 +03:00 [DBG] Loaded hosting startup assembly OnlineGradeApplication-API
+2023-05-20 12:22:35.402 +03:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2023-05-20 12:22:35.403 +03:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2023-05-20 12:22:35.407 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-20 12:22:35.410 +03:00 [INF] Hosting environment: Development
+2023-05-20 12:22:35.412 +03:00 [INF] Content root path: C:\Users\Yaroslav\source\repos\OnlineGradeApplication\OnlineGradeApplication-API\
+2023-05-20 12:22:35.413 +03:00 [DBG] Hosting started
+2023-05-20 12:22:35.569 +03:00 [DBG] Connection id "0HMQP2EVOGF4F" accepted.
+2023-05-20 12:22:35.569 +03:00 [DBG] Connection id "0HMQP2EVOGF4E" accepted.
+2023-05-20 12:22:35.571 +03:00 [DBG] Connection id "0HMQP2EVOGF4F" started.
+2023-05-20 12:22:35.572 +03:00 [DBG] Connection id "0HMQP2EVOGF4E" started.
+2023-05-20 12:22:35.655 +03:00 [DBG] Connection id "0HMQP2EVOGF4E" received FIN.
+2023-05-20 12:22:35.655 +03:00 [DBG] Connection id "0HMQP2EVOGF4F" received FIN.
+2023-05-20 12:22:35.668 +03:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.<FillHandshakeBufferAsync>g__InternalFillHandshakeBufferAsync|187_0[TIOAdapter](TIOAdapter adap, ValueTask`1 task, Int32 minSize)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2023-05-20 12:22:35.668 +03:00 [DBG] Failed to authenticate HTTPS connection.
+System.IO.IOException:  Received an unexpected EOF or 0 bytes from the transport stream.
+   at System.Net.Security.SslStream.<FillHandshakeBufferAsync>g__InternalFillHandshakeBufferAsync|187_0[TIOAdapter](TIOAdapter adap, ValueTask`1 task, Int32 minSize)
+   at System.Net.Security.SslStream.ReceiveBlobAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[] reAuthenticationData, Boolean isApm)
+   at Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware.OnConnectionAsync(ConnectionContext context)
+2023-05-20 12:22:35.722 +03:00 [DBG] Connection id "0HMQP2EVOGF4E" stopped.
+2023-05-20 12:22:35.722 +03:00 [DBG] Connection id "0HMQP2EVOGF4F" stopped.
+2023-05-20 12:22:35.724 +03:00 [DBG] Connection id "0HMQP2EVOGF4F" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-05-20 12:22:35.724 +03:00 [DBG] Connection id "0HMQP2EVOGF4E" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-05-20 12:22:36.543 +03:00 [DBG] Connection id "0HMQP2EVOGF4G" accepted.
+2023-05-20 12:22:36.545 +03:00 [DBG] Connection id "0HMQP2EVOGF4G" started.
+2023-05-20 12:22:36.612 +03:00 [DBG] Connection 0HMQP2EVOGF4G established using the following protocol: "Tls12"
+2023-05-20 12:22:36.684 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/swagger/index.html - -
+2023-05-20 12:22:37.216 +03:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2023-05-20 12:22:37.244 +03:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2023-05-20 12:22:37.245 +03:00 [DBG] Request did not match any endpoints
+2023-05-20 12:22:37.379 +03:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2023-05-20 12:22:37.483 +03:00 [DBG] Response markup was updated to include browser refresh script injection.
+2023-05-20 12:22:37.489 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/swagger/index.html - - - 200 - text/html;charset=utf-8 809.2245ms
+2023-05-20 12:22:37.854 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/_framework/aspnetcore-browser-refresh.js - -
+2023-05-20 12:22:37.859 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/_framework/aspnetcore-browser-refresh.js - - - 200 11960 application/javascript;+charset=utf-8 4.3076ms
+2023-05-20 12:22:38.181 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/swagger/v1/swagger.json - -
+2023-05-20 12:22:38.183 +03:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2023-05-20 12:22:38.185 +03:00 [DBG] Request did not match any endpoints
+2023-05-20 12:22:38.275 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 93.2946ms
+2023-05-20 12:22:58.325 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/api/Group/GetGroupsInfo - -
+2023-05-20 12:22:58.335 +03:00 [DBG] 2 candidate(s) found for the request path '/api/Group/GetGroupsInfo'
+2023-05-20 12:22:58.340 +03:00 [DBG] Endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API)' with route pattern 'api/Group/GetGroupsInfo' is valid for the request path '/api/Group/GetGroupsInfo'
+2023-05-20 12:22:58.341 +03:00 [DBG] Endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroup (OnlineGradeApplication-API)' with route pattern 'api/Group/{id}' is valid for the request path '/api/Group/GetGroupsInfo'
+2023-05-20 12:22:58.343 +03:00 [DBG] Request matched endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API)'
+2023-05-20 12:22:58.344 +03:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2023-05-20 12:22:58.348 +03:00 [INF] Executing endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API)'
+2023-05-20 12:22:58.365 +03:00 [INF] Route matched with {action = "GetGroupsInfo", controller = "Group"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Int32] GetGroupsInfo() on controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API).
+2023-05-20 12:22:58.368 +03:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2023-05-20 12:22:58.370 +03:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2023-05-20 12:22:58.371 +03:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2023-05-20 12:22:58.374 +03:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2023-05-20 12:22:58.375 +03:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2023-05-20 12:22:58.380 +03:00 [DBG] Executing controller factory for controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API)
+2023-05-20 12:22:58.382 +03:00 [DBG] Executed controller factory for controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API)
+2023-05-20 12:22:58.591 +03:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2023-05-20 12:22:58.596 +03:00 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2023-05-20 12:22:58.598 +03:00 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2023-05-20 12:22:58.599 +03:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2023-05-20 12:22:58.600 +03:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2023-05-20 12:22:58.601 +03:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2023-05-20 12:22:58.602 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[OnlineGradeApplication_BLL.Responses.GetGroups, OnlineGradeApplication-BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-20 12:22:58.629 +03:00 [INF] Executed action OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API) in 245.9104ms
+2023-05-20 12:22:58.631 +03:00 [INF] Executed endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API)'
+2023-05-20 12:22:58.633 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/api/Group/GetGroupsInfo - - - 200 - application/json;+charset=utf-8 308.3533ms
+2023-05-20 12:23:05.649 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/api/Group/GetGroupsInfo - -
+2023-05-20 12:23:05.652 +03:00 [DBG] 2 candidate(s) found for the request path '/api/Group/GetGroupsInfo'
+2023-05-20 12:23:05.653 +03:00 [DBG] Endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API)' with route pattern 'api/Group/GetGroupsInfo' is valid for the request path '/api/Group/GetGroupsInfo'
+2023-05-20 12:23:05.654 +03:00 [DBG] Endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroup (OnlineGradeApplication-API)' with route pattern 'api/Group/{id}' is valid for the request path '/api/Group/GetGroupsInfo'
+2023-05-20 12:23:05.656 +03:00 [DBG] Request matched endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API)'
+2023-05-20 12:23:05.657 +03:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2023-05-20 12:23:05.658 +03:00 [INF] Executing endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API)'
+2023-05-20 12:23:05.660 +03:00 [INF] Route matched with {action = "GetGroupsInfo", controller = "Group"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Int32] GetGroupsInfo() on controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API).
+2023-05-20 12:23:05.664 +03:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2023-05-20 12:23:05.665 +03:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2023-05-20 12:23:05.666 +03:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2023-05-20 12:23:05.668 +03:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2023-05-20 12:23:05.669 +03:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2023-05-20 12:23:05.671 +03:00 [DBG] Executing controller factory for controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API)
+2023-05-20 12:23:05.674 +03:00 [DBG] Executed controller factory for controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API)
+2023-05-20 12:23:05.712 +03:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2023-05-20 12:23:05.714 +03:00 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2023-05-20 12:23:05.715 +03:00 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2023-05-20 12:23:05.716 +03:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2023-05-20 12:23:05.717 +03:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2023-05-20 12:23:05.718 +03:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2023-05-20 12:23:05.719 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[OnlineGradeApplication_BLL.Responses.GetGroups, OnlineGradeApplication-BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-20 12:23:05.721 +03:00 [INF] Executed action OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API) in 50.3605ms
+2023-05-20 12:23:05.722 +03:00 [INF] Executed endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroupsInfo (OnlineGradeApplication-API)'
+2023-05-20 12:23:05.724 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/api/Group/GetGroupsInfo - - - 200 - application/json;+charset=utf-8 74.7196ms

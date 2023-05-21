@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGradeApplication_BLL.Interfaces.Abstractions;
+using Serilog;
 
 namespace OnlineGradeApplication_API.Controllers
 {
@@ -18,7 +19,18 @@ namespace OnlineGradeApplication_API.Controllers
         [HttpGet]
         public ActionResult<List<OnlineGradeApplication_BLL.DTOs.AssignmentTypeDTO>> GetAssignmentTypesAsync()
         {
-            return _assignmentType.GetAssignmentTypesAsync();
+            try
+            {
+                var data = _assignmentType.GetAssignmentTypesAsync();
+                Log.Information($"[API][AssignmentType][UserId:{CurrentUser.currentUserId}] - GetAssignmentTypesAsync - Success. Received {data.Count} rows");
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[API][AssignmentType][UserId:{CurrentUser.currentUserId}] - GetAssignmentTypesAsync - Fail - {ex.Message}");
+                return BadRequest(ex.Message);
+            }
+           
         }
 
         [HttpGet("{id}")]
@@ -27,8 +39,10 @@ namespace OnlineGradeApplication_API.Controllers
             var assignmentType = _assignmentType.GetAssignmentTypeAsync(id);
             if (assignmentType == null)
             {
+                Log.Warning($"[API][AssignmentType][UserId:{CurrentUser.currentUserId}] - GetAssignmentTypeAsync - NotFound with id={id}");
                 return NotFound();
             }
+            Log.Information($"[API][AssignmentType][UserId:{CurrentUser.currentUserId}] - GetAssignmentTypeAsync - Success");
             return Ok(assignmentType);
 
         }

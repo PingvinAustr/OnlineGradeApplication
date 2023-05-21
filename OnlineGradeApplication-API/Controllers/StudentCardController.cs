@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGradeApplication_BLL.Interfaces.Abstractions;
+using Serilog;
 
 namespace OnlineGradeApplication_API.Controllers
 {
@@ -18,7 +19,18 @@ namespace OnlineGradeApplication_API.Controllers
         [HttpGet]
         public ActionResult<List<OnlineGradeApplication_BLL.DTOs.StudentCardDTO>> GetStudentCards()
         {
-            return _studentCardRepository.GetStudentCardsAsync();
+            try
+            {
+                var data = _studentCardRepository.GetStudentCardsAsync();
+                Log.Information($"[API][StudentCard][UserId:{CurrentUser.currentUserId}] - GetStudentCards - Success");
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[API][StudentCard][UserId:{CurrentUser.currentUserId}] - GetStudentCards - Fail - {ex.Message}");
+                return BadRequest(ex.Message);
+            }
+           
         }
 
         [HttpGet("{id}")]
@@ -27,8 +39,10 @@ namespace OnlineGradeApplication_API.Controllers
             var studentCard = _studentCardRepository.GetStudentCardAsync(id);
             if (studentCard == null)
             {
+                Log.Warning($"[API][StudentCard][UserId:{CurrentUser.currentUserId}] - GetStudentCard - NotFound with id={id}");
                 return NotFound();
             }
+            Log.Information($"[API][StudentCard][UserId:{CurrentUser.currentUserId}] - GetStudentCard - Success");
             return Ok(studentCard);
 
         }
