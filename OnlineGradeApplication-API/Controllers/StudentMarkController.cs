@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGradeApplication_BLL.Interfaces.Abstractions;
+using Serilog;
 
 namespace OnlineGradeApplication_API.Controllers
 {
@@ -18,7 +19,17 @@ namespace OnlineGradeApplication_API.Controllers
         [HttpGet]
         public ActionResult<List<OnlineGradeApplication_BLL.DTOs.StudentMarkDTO>> GetStudentMarksAsync()
         {
-            return _studentMarkRepository.GetStudentMarksAsync();
+            try
+            {
+                var data = _studentMarkRepository.GetStudentMarksAsync();
+                Log.Information($"[API][StudentMark][UserId:{CurrentUser.currentUserId}] - GetStudentMarksAsync - Success");
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[API][StudentMark][UserId:{CurrentUser.currentUserId}] - GetStudentMarksAsync - Fail - {ex.Message}");
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
@@ -27,10 +38,11 @@ namespace OnlineGradeApplication_API.Controllers
             var studentMark = _studentMarkRepository.GetStudentMarkAsync(id);
             if (studentMark == null)
             {
+                Log.Warning($"[API][StudentMark][UserId:{CurrentUser.currentUserId}] - GetStudentMarkAsync - NotFound with id={id}");
                 return NotFound();
             }
+            Log.Information($"[API][StudentMark][UserId:{CurrentUser.currentUserId}] - GetStudentMarkAsync - Success");
             return Ok(studentMark);
-
         }
     }
 }

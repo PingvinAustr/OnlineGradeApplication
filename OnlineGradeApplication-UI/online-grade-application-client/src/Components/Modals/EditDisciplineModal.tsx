@@ -4,19 +4,20 @@ import axios from 'axios';
 
 const { Option } = Select;
 
-interface EditDisciplineModalProps {
+interface DisciplineModalProps {
     visible: boolean;
     onSave: () => void;
     onCancel: () => void;
     onUpdate: () => void;
-    record: {
+    isEditMode: boolean;
+    record?: {
         id: string;
         student: any;
         teacher: any;
         group: any;
         discipline: any;
         teacherGroupDbId: number;
-    } | undefined;
+    };
 }
 
 interface Group {
@@ -35,7 +36,7 @@ interface Discipline {
     disciplineName: string;
 }
 
-const EditDisciplineModal: React.FC<EditDisciplineModalProps> = ({ visible, onSave, onCancel, record , onUpdate}) => {
+const EditDisciplineModal: React.FC<DisciplineModalProps> = ({ visible, onSave, onCancel, record , onUpdate, isEditMode}) => {
     const [groups, setGroups] = useState<Group[]>([]);
     const [teachers, setTeachers] = useState<Teacher[]>([]);
     const [disciplines, setDisciplines] = useState<Discipline[]>([]);
@@ -101,10 +102,23 @@ const EditDisciplineModal: React.FC<EditDisciplineModalProps> = ({ visible, onSa
             console.log(selectedGroup);
             console.log(selectedTeacher);
             console.log(selectedDiscipline);
-            if (record && selectedGroup && selectedTeacher && selectedDiscipline) {
-                const response = await axios.post(
-                    `https://localhost:7264/EditDisciplineInSchedule?id=${record.teacherGroupDbId}&teacherId=${selectedTeacher}&groupId=${selectedGroup}&disciplineId=${selectedDiscipline}`
-                );
+            if (selectedGroup && selectedTeacher && selectedDiscipline) {
+                let response;
+                if(isEditMode && record) {
+                    response = await axios.post(
+                        `https://localhost:7264/EditDisciplineInSchedule?id=${record.teacherGroupDbId}&teacherId=${selectedTeacher}&groupId=${selectedGroup}&disciplineId=${selectedDiscipline}`
+                    );
+                } else {
+                    response = await axios.post(
+                        'https://localhost:7264/api/TeacherGroup',
+                        {
+                            groupId: selectedGroup,
+                            disciplineId: selectedDiscipline,
+                            teacherId: selectedTeacher,
+                            teacherGroupDisciplineYear: 0 // You can set it to the current year or to 0
+                        }
+                    );
+                }
                 // Handle the response if necessary
                 console.log(response);
                 // Call the onSave prop to update the parent component
@@ -149,7 +163,7 @@ const EditDisciplineModal: React.FC<EditDisciplineModalProps> = ({ visible, onSa
 
     return (
         <Modal
-            title="Дисципліна. Редагування"
+            title={isEditMode ? "Дисципліна. Редагування" : "Дисципліна. Додавання"}
             visible={visible}
             onOk={handleSubmit}
             onCancel={onCancel}

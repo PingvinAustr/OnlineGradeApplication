@@ -17,6 +17,12 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
             var teachersGroup = _context.TeachersGroups.FirstOrDefault(x => x.Id == id);
             return teachersGroup;
         }
+        public void AddTeacherGroupEntry(TeachersGroup group)
+        {
+            var _context = new OnlineGradesDbContext();
+            _context.TeachersGroups.Add(group);
+            _context.SaveChanges();
+        }
         /*
         Task<Role> AddRoleAsync(Role role);
         Task<Role> UpdateRoleAsync(Role role);

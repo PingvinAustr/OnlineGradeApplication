@@ -1,13 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import './MainMenu.styles.css';
 import {useAuth} from "../../Auth/AuthContext";
-import {getUserDataById} from "../../Requests/Requests";
+import {deleteGroupTeacherDisciplineEntry, getUserDataById, setCurrentUser} from "../../Requests/Requests";
 import { Layout, Menu } from 'antd';
 import {BaseTSConstants} from "../../assets/constants/BaseTSConstants";
 import { Dropdown, Menu as AntMenu } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
 import Disciplines from '../Disciplines/Disciplines';
+import Students from "../Students/Students";
+import Groups from "../Groups/Groups";
+import SystemAccesses from "../SystemAccesses/SystemAccesses";
+import GroupList from "../GroupList/GroupList";
+import Cookies from "js-cookie";
 const { Sider, Content } = Layout;
 
 
@@ -30,14 +35,27 @@ const MainMenu: React.FC = () => {
         switch (selectedMenuItem) {
             case 'Disciplines':
                 return <Disciplines />;
-            // case '2':
-            //     return <Groups />;
+             case 'Students':
+                 return <Students />;
+            case 'Groups':
+                return <Groups/>
+            case 'SystemAccesses':
+                return  <SystemAccesses/>
+            case 'GroupList':
+                return <GroupList/>
             default:
                 return null;
         }
     };
 
     useEffect(() => {
+        const isUserLoggedIn = Cookies.get('isUserLoggedIn');
+        if (isUserLoggedIn=='false' || !Cookies.get('isUserLoggedIn')) navigate('/');
+        else {
+            let lastTab:string = Cookies.get('lastTab') as string;
+            setSelectedMenuItem(lastTab);
+            setCurrentUser(parseInt(Cookies.get('userId') as string));
+        }
         console.log('Current user ID:', userId);
         console.log('Current user role ID:', userRoleId);
 
@@ -61,15 +79,15 @@ const MainMenu: React.FC = () => {
                     <Menu.Item key="2">Завдання</Menu.Item>
                     <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
                     <Menu.Item key="4">Викладачі</Menu.Item>
-                    <Menu.Item key="5">Список групи</Menu.Item>
+                    <Menu.Item key="GroupList">Список групи</Menu.Item>
                 </>
             );
         } else if (userRoleId === BaseTSConstants.TeacherRoleId) {
             return (
                 <>
                     <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
-                    <Menu.Item key="2">Студенти</Menu.Item>
-                    <Menu.Item key="3">Групи</Menu.Item>
+                    <Menu.Item key="Students">Студенти</Menu.Item>
+                    <Menu.Item key="Groups">Групи</Menu.Item>
                     <Menu.Item key="4">Завдання</Menu.Item>
                     <Menu.Item key="5">Оцінки</Menu.Item>
                 </>
@@ -79,11 +97,11 @@ const MainMenu: React.FC = () => {
             return (
                 <>
                     <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
-                    <Menu.Item key="2">Студенти</Menu.Item>
-                    <Menu.Item key="3">Групи</Menu.Item>
+                    <Menu.Item key="Students">Студенти</Menu.Item>
+                    <Menu.Item key="Groups">Групи</Menu.Item>
                     <Menu.Item key="4">Завдання</Menu.Item>
                     <Menu.Item key="5">Оцінки</Menu.Item>
-                    <Menu.Item key="6">Користувачі системи</Menu.Item>
+                    <Menu.Item key="SystemAccesses">Користувачі системи</Menu.Item>
                 </>
             );
         }
@@ -91,11 +109,11 @@ const MainMenu: React.FC = () => {
             return (
                 <>
                     <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
-                    <Menu.Item key="2">Студенти</Menu.Item>
-                    <Menu.Item key="3">Групи</Menu.Item>
+                    <Menu.Item key="Students">Студенти</Menu.Item>
+                    <Menu.Item key="Groups">Групи</Menu.Item>
                     <Menu.Item key="4">Завдання</Menu.Item>
                     <Menu.Item key="5">Оцінки</Menu.Item>
-                    <Menu.Item key="6">Користувачі системи</Menu.Item>
+                    <Menu.Item key="SystemAccesses">Користувачі системи</Menu.Item>
                 </>
             );
         }
@@ -104,6 +122,10 @@ const MainMenu: React.FC = () => {
     const onUserLogout = () => {
         setUserId(null);
         setUserRoleId(null);
+        Cookies.set("isUserLoggedIn", "false");
+        Cookies.set("userId", "");
+        Cookies.set("userRoleId", "");
+        Cookies.set("lastTab", "");
         navigate('/');
     };
 

@@ -2,9 +2,20 @@ using Microsoft.EntityFrameworkCore;
 using OnlineGradeApplication_BLL;
 using OnlineGradeApplication_DAL;
 using System.Text.Json.Serialization;
+using Serilog;
+using Serilog.Events;
+using Serilog.Formatting.Compact;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+Log.Logger = new LoggerConfiguration()
+    .MinimumLevel.Debug()
+    .WriteTo.Console()
+    .WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Day)
+    .CreateLogger();
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.AddSerilog(dispose: true);
 
 builder.Services.AddCors(options =>
 {
@@ -76,7 +87,7 @@ builder.Services.AddScoped<OnlineGradeApplication_BLL.Interfaces.Abstractions.IT
 
 builder.Services.AddScoped<OnlineGradeApplication_DAL.Interfaces.Abstractions.IStudentMarkRepository, OnlineGradeApplication_DAL.Interfaces.Implementations.StudentMarkRepository>();
 builder.Services.AddScoped<OnlineGradeApplication_BLL.Interfaces.Abstractions.IStudentMarkRepository, OnlineGradeApplication_BLL.Interfaces.Implementations.StudentMarkRepository>();
-
+builder.Services.AddHttpContextAccessor();
 
 var config = new AutoMapper.MapperConfiguration(cfg =>
 {
@@ -91,7 +102,6 @@ builder.Services.AddDbContext<OnlineGradeApplication_DAL.Entities.OnlineGradesDb
     builder.Configuration.GetConnectionString("DefaultConnection")
     ));
 OnlineGradeApplication_DAL.Entities.OnlineGradesDbContext context = new OnlineGradeApplication_DAL.Entities.OnlineGradesDbContext();
-Console.WriteLine(context.Roles.Count());
 
 var app = builder.Build();
 
@@ -110,3 +120,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+

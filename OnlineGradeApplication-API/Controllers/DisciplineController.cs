@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGradeApplication_BLL.Interfaces.Abstractions;
+using Serilog;
 
 namespace OnlineGradeApplication_API.Controllers
 {
@@ -27,8 +28,10 @@ namespace OnlineGradeApplication_API.Controllers
             var discipline = _disciplineRepository.GetDisciplineAsync(id);
             if (discipline == null)
             {
+                Log.Warning($"[API][Discipline][UserId:{CurrentUser.currentUserId}] - GetDisciplineAsync - NotFound with id={id}");
                 return NotFound();
             }
+            Log.Information($"[API][Discipline][UserId:{CurrentUser.currentUserId}] - GetDisciplineAsync - Success");
             return Ok(discipline);
 
         }
@@ -40,8 +43,10 @@ namespace OnlineGradeApplication_API.Controllers
 
             if (disciplines == null)
             {
+                Log.Warning($"[API][Discipline][UserId:{CurrentUser.currentUserId}] - GetDisciplinesForUser - NotFound with id={userId}");
                 return NotFound();
             }
+            Log.Information($"[API][Discipline][UserId:{CurrentUser.currentUserId}] - GetDisciplinesForUser - Success");
             return Ok(disciplines);
 
         }
@@ -50,8 +55,16 @@ namespace OnlineGradeApplication_API.Controllers
         public ActionResult<bool> DeleteDisciplines(int id)
         {
             var result = _disciplineRepository.DeleteGroupTeacherDisciplineEntry(id);
-            if (result) return Ok(result);
-            else return NoContent();
+            if (result)
+            {
+                Log.Information($"[API][Discipline][UserId:{CurrentUser.currentUserId}] - DeleteGroupTeacherDisciplineEntry - Success - deleted with id={id}");
+                return Ok(result);
+            }
+            else
+            {
+                Log.Warning($"[API][Discipline][UserId:{CurrentUser.currentUserId}] - DeleteGroupTeacherDisciplineEntry - Failed to delete with id={id}");
+                return NoContent();
+            }
 
         }
 
@@ -59,8 +72,16 @@ namespace OnlineGradeApplication_API.Controllers
         public ActionResult<bool> EditDisciplineInSchedule(int id, int teacherId, int groupId, int disciplineId)
         {
             var result = _disciplineRepository.EditDisciplineInSchedule(id, teacherId, groupId, disciplineId);
-            if (result) return Ok(result);
-            else return NoContent();
+            if (result)
+            {
+                Log.Information($"[API][Discipline][UserId:{CurrentUser.currentUserId}] - EditDisciplineInSchedule - Success");
+                return Ok(result);
+            }
+            else
+            {
+                Log.Warning($"[API][Discipline][UserId:{CurrentUser.currentUserId}] - EditDisciplineInSchedule - Fail");
+                return NoContent();
+            }
         }
     }
 }

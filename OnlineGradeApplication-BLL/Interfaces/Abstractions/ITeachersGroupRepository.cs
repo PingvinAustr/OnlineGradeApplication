@@ -6,5 +6,6 @@ namespace OnlineGradeApplication_BLL.Interfaces.Abstractions
     {
         List<TeachersGroupDTO> GetTeachersGroupsAsync();
         TeachersGroupDTO GetTeachersGroupAsync(int id);
+        void AddTeacherGroupEntry(TeachersGroupDTO group);
     }
 }

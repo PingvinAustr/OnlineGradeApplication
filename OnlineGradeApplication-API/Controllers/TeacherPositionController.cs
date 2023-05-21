@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGradeApplication_BLL.Interfaces.Abstractions;
+using Serilog;
 
 namespace OnlineGradeApplication_API.Controllers
 {
@@ -18,7 +19,17 @@ namespace OnlineGradeApplication_API.Controllers
         [HttpGet]
         public ActionResult<List<OnlineGradeApplication_BLL.DTOs.TeacherPositionDTO>> GetTeacherPositions()
         {
-            return _teacherPositionRepository.GetTeacherPositionsAsync();
+            try
+            {
+                var data = _teacherPositionRepository.GetTeacherPositionsAsync();
+                Log.Information($"[API][TeacherPosition][UserId:{CurrentUser.currentUserId}] - GetTeacherPositions - Success");
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[API][TeacherPosition][UserId:{CurrentUser.currentUserId}] - GetTeacherPositions - Fail");
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
@@ -27,8 +38,10 @@ namespace OnlineGradeApplication_API.Controllers
             var teacherPosition = _teacherPositionRepository.GetTeacherPositionAsync(id);
             if (teacherPosition == null)
             {
+                Log.Warning($"[API][TeacherPosition][UserId:{CurrentUser.currentUserId}] - GetTeacherPosition - NotFound");
                 return NotFound();
             }
+            Log.Information($"[API][TeacherPosition][UserId:{CurrentUser.currentUserId}] - GetTeacherPosition - Success");
             return Ok(teacherPosition);
 
         }

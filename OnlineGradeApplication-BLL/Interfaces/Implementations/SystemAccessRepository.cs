@@ -2,6 +2,7 @@
 using OnlineGradeApplication_BLL.DTOs;
 using OnlineGradeApplication_DAL.Entities;
 using AutoMapper;
+using OnlineGradeApplication_BLL.Responses;
 
 namespace OnlineGradeApplication_BLL.Interfaces.Implementations
 {
@@ -27,6 +28,28 @@ namespace OnlineGradeApplication_BLL.Interfaces.Implementations
             var data = _systemAccess.GetSystemAccessAsync(id);
             SystemAccessDTO systemAccess = _SystemAccessMapper.Map<SystemAccess, SystemAccessDTO>(data);
             return systemAccess;
+        }
+
+        public List<GetSystemUsers> GetResponseSystemAccesses()
+        {
+            var data = _systemAccess.GetResponseSystemAccesses();
+            List<GetSystemUsers> sysAccesses = _SystemAccessMapper.Map<List<OnlineGradeApplication_DAL.Responses.GetSystemUsers>, List<OnlineGradeApplication_BLL.Responses.GetSystemUsers>>(data);
+            return sysAccesses;
+        }
+
+        public void AddSystemAccess(string username, string password)
+        {
+            _systemAccess.AddSystemAccess(username, password);
+        }
+
+        public void DeleteSystemAccess(int id)
+        {
+            _systemAccess.DeleteSystemAccess(id);
+        }
+
+        public void EditSystemAccess(int id, string username, string password)
+        {
+            _systemAccess.EditSystemAccess(id, username, password);
         }
     }
 }

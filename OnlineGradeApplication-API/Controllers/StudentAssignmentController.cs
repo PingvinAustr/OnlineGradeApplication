@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGradeApplication_BLL.Interfaces.Abstractions;
+using Serilog;
 
 namespace OnlineGradeApplication_API.Controllers
 {
@@ -18,7 +19,18 @@ namespace OnlineGradeApplication_API.Controllers
         [HttpGet]
         public ActionResult<List<OnlineGradeApplication_BLL.DTOs.StudentAssignmentDTO>> GetStudentAssignments()
         {
-            return _studentAssignmentRepository.GetStudentAssignmentsAsync();
+            try
+            {
+                var data = _studentAssignmentRepository.GetStudentAssignmentsAsync();
+                Log.Information($"[API][StudentAssignment][UserId:{CurrentUser.currentUserId}] - GetStudentAssignmentsAsync - Success");
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[API][StudentAssignment][UserId:{CurrentUser.currentUserId}] - GetStudentAssignmentsAsync - Fail - {ex.Message}");
+                return BadRequest(ex.Message);
+            }
+           
         }
 
         [HttpGet("{id}")]
@@ -27,8 +39,10 @@ namespace OnlineGradeApplication_API.Controllers
             var studentAssignment = _studentAssignmentRepository.GetStudentAssignmentAsync(id);
             if (studentAssignment == null)
             {
+                Log.Warning($"[API][StudentAssignment][UserId:{CurrentUser.currentUserId}] - GetStudentAssignment - NotFound with id={id}");
                 return NotFound();
             }
+            Log.Information($"[API][StudentAssignment][UserId:{CurrentUser.currentUserId}] - GetStudentAssignment - Success");
             return Ok(studentAssignment);
 
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineGradeApplication_BLL.Interfaces.Abstractions;
+using Serilog;
 
 namespace OnlineGradeApplication_API.Controllers
 {
@@ -18,7 +19,17 @@ namespace OnlineGradeApplication_API.Controllers
         [HttpGet]
         public ActionResult<List<OnlineGradeApplication_BLL.DTOs.StudentsGroupDTO>> GetStudentsGroups()
         {
-            return _studentGroupsRepository.GetStudentsGroupsAsync();
+            try
+            {
+                var data = _studentGroupsRepository.GetStudentsGroupsAsync();
+                Log.Information($"[API][StudentsGroup][UserId:{CurrentUser.currentUserId}] - GetStudentsGroups - Success");
+                return data;
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[API][StudentsGroup][UserId:{CurrentUser.currentUserId}] - GetStudentsGroups - Fail - {ex.Message}");
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("{id}")]
@@ -27,8 +38,10 @@ namespace OnlineGradeApplication_API.Controllers
             var studentGroups = _studentGroupsRepository.GetStudentsGroupAsync(id);
             if (studentGroups == null)
             {
+                Log.Warning($"[API][StudentsGroup][UserId:{CurrentUser.currentUserId}] - GetStudentsGroup - NotFound with id={id}");
                 return NotFound();
             }
+            Log.Information($"[API][StudentsGroup][UserId:{CurrentUser.currentUserId}] - GetStudentsGroup - Success");
             return Ok(studentGroups);
 
         }

@@ -48,3 +48,13 @@ export const deleteGroupTeacherDisciplineEntry = async (id: number) => {
         throw error;
     }
 };
+
+export const setCurrentUser = async (id: number) => {
+    try {
+        const response = await axios.post(`https://localhost:7264/setCurrentUser?id=${id}`);
+        return response.data;
+    } catch (error) {
+        console.error('Error setting current user:', error);
+        throw error;
+    }
+};

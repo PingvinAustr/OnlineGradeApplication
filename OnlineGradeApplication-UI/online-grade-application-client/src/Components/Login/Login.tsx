@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import {useAuth} from "../../Auth/AuthContext";
 
 import {loginUser, getUserRole} from "../../Requests/Requests";
-
+import Cookies from "js-cookie";
 import {toast} from "react-toastify";
 
 const animation = require('../../assets/media/videos/gradebook.gif');
@@ -31,6 +31,10 @@ const Login: React.FC = () => {
                 console.log("RoleID:" + userRole);
                 setUserId(data);
                 setUserRoleId(userRole);
+                Cookies.set("isUserLoggedIn", "true");
+                Cookies.set("userId", data.toString());
+                Cookies.set("userRoleId", userRole.toString());
+
             }
         } catch (error) {
             toast.error("Пароль та логін не співпадають, спробуйте ще раз");
@@ -44,7 +48,7 @@ const Login: React.FC = () => {
 
     return (
         <React.Fragment>
-            <img src={animation} alt="this slowpoke moves"  />
+            <img style={{width:'400px', height:'400px'}} src={animation} alt="this slowpoke moves"  />
         <Form
             name="login"
             className="login-form"

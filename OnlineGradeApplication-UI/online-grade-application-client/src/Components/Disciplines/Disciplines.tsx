@@ -5,6 +5,7 @@ import { useAuth } from '../../Auth/AuthContext';
 import './Disciplines.styles.css';
 import InfoPopup from"../Popups/InfoPopup";
 import EditDisciplineModal from "../Modals/EditDisciplineModal";
+import Cookies from "js-cookie";
 
 
 const Disciplines: React.FC = () => {
@@ -15,10 +16,20 @@ const Disciplines: React.FC = () => {
         >(undefined);
     const [showPopup, setShowPopup] = useState<boolean>(false);
     const [editModalVisible, setEditModalVisible] = useState(false);
+    const [addingRecord, setAddingRecord] = useState(false);
+    const [addModalVisible, setAddModalVisible] = useState(false); // New state for Add Modal
+
+
 
     const onSelectChange = (selectedKeys: React.Key[]) => {
         setSelectedRowKeys(selectedKeys);
     };
+
+    const onAddButtonClick = () => {
+        setAddingRecord(true);
+        setAddModalVisible(true);
+    };
+
 
     const rowSelection = {
         selectedRowKeys,
@@ -29,7 +40,7 @@ const Disciplines: React.FC = () => {
         if (userRoleId === 1 || userRoleId === 2) {
             return (
                 <>
-                    <Button type="primary" style={{ marginRight: '10px' }}>Add</Button>
+                    <Button type="primary" style={{ marginRight: '10px' }} onClick={onAddButtonClick}>Add</Button>
                     <Button type="primary" style={{ marginRight: '10px' }} danger onClick={onDeleteButtonClick}>Delete</Button>
                     <Button type="primary" onClick={onEditButtonClick}>Edit</Button>
                 </>
@@ -52,6 +63,7 @@ const Disciplines: React.FC = () => {
     useEffect(() => {
 
         if (userId) {
+            Cookies.set("lastTab", "Disciplines");
             fetchDisciplines();
         }
     }, [userId]);
@@ -119,15 +131,29 @@ const Disciplines: React.FC = () => {
             <Table dataSource={disciplines} columns={columns} rowKey={(record) => `${record.teacherGroupDbId}`} rowSelection={userRoleId === 1 || userRoleId === 2 ? rowSelection : undefined} />
             {showPopup && <InfoPopup content="Будь ласка оберіть лише 1 запис. Ви не можете редагувати декілька записів одночасно" />}
             <EditDisciplineModal
+                record={undefined}
+                visible={addModalVisible}
+                onSave={() => {
+                    setAddModalVisible(false);
+                    fetchDisciplines();
+                }}
+                onCancel={() => {
+                    setAddModalVisible(false);
+                }}
+                isEditMode={false}
+                onUpdate={fetchDisciplines}
+            />
+            <EditDisciplineModal
                 record={editingRecord}
                 visible={editModalVisible}
                 onSave={() => {
-                    // Implement save logic here
                     setEditModalVisible(false);
+                    fetchDisciplines();
                 }}
                 onCancel={() => {
                     setEditModalVisible(false);
                 }}
+                isEditMode={true}
                 onUpdate={fetchDisciplines}
             />
         </div>
