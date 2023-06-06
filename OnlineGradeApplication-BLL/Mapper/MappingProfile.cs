@@ -29,6 +29,10 @@ namespace OnlineGradeApplication_BLL.Mapper
             CreateMap<OnlineGradeApplication_DAL.Responses.GetStudentsResponse, OnlineGradeApplication_BLL.Responses.GetStudentsResponse>().ReverseMap();
             CreateMap<OnlineGradeApplication_DAL.Responses.GetGroups, OnlineGradeApplication_BLL.Responses.GetGroups>().ReverseMap();
             CreateMap<OnlineGradeApplication_DAL.Responses.GetSystemUsers, OnlineGradeApplication_BLL.Responses.GetSystemUsers>().ReverseMap();
+            CreateMap<OnlineGradeApplication_DAL.Responses.GetTeachersByStudentId, OnlineGradeApplication_BLL.Responses.GetTeachersByStudentId>().ReverseMap();
+            CreateMap<OnlineGradeApplication_DAL.Responses.StudentAssignmentResponse, OnlineGradeApplication_BLL.Responses.StudentAssignmentResponse>().ReverseMap();
+            CreateMap<OnlineGradeApplication_DAL.Responses.TeacherAssignmentResponse, OnlineGradeApplication_BLL.Responses.TeacherAssignmentResponse>().ReverseMap();
+            CreateMap<OnlineGradeApplication_DAL.Responses.GetMarksStudent, OnlineGradeApplication_BLL.Responses.GetMarksStudent>().ReverseMap();
         }
     }
 }

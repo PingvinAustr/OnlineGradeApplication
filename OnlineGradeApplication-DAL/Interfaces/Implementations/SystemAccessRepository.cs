@@ -29,10 +29,6 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
                 Console.WriteLine(person.Username);
                 GetSystemUsers sysUser = new GetSystemUsers()
                 {
-                   //Id = _context.Persons.Where(x => x.SystemAccessId == person.Id)?.First()?.Id,
-                    //FirstName = _context.Persons.Where(x => x.SystemAccessId == person.Id)?.First()?.FirstName,
-                    //LastName = _context.Persons.Where(x => x.SystemAccessId == person.Id)?.First()?.LastName,
-                    //Role = _context.Roles.Where(x => x.RoleId == _context.Persons.Where(x => x.SystemAccessId == person.Id).First().RoleId)?.First(),
                     SystemAccess = person
                 };
                 if (_context.Persons.Any(x => x.SystemAccessId == person.Id))
@@ -88,11 +84,5 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
 
             }
         }
-
-        /*
-        Task<Role> AddRoleAsync(Role role);
-        Task<Role> UpdateRoleAsync(Role role);
-        Task DeleteRoleAsync(int id);
-        */
     }
 }

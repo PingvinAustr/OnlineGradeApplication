@@ -17,10 +17,5 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
             var teacherCard = _context.TeacherCards.FirstOrDefault(x => x.Id == id);
             return teacherCard;
         }
-        /*
-        Task<Role> AddRoleAsync(Role role);
-        Task<Role> UpdateRoleAsync(Role role);
-        Task DeleteRoleAsync(int id);
-        */
     }
 }

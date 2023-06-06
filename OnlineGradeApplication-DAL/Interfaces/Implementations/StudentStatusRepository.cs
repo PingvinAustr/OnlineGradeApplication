@@ -17,10 +17,5 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
             var studentStatus = _context.StudentStatuses.FirstOrDefault(x => x.Id == id);
             return studentStatus;
         }
-        /*
-        Task<Role> AddRoleAsync(Role role);
-        Task<Role> UpdateRoleAsync(Role role);
-        Task DeleteRoleAsync(int id);
-        */
     }
 }

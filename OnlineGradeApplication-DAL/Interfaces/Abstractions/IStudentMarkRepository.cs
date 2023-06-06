@@ -1,4 +1,5 @@
 ﻿using OnlineGradeApplication_DAL.Entities;
+using OnlineGradeApplication_DAL.Responses;
 
 namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
 {
@@ -6,10 +7,7 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
     {
         List<StudentMark> GetStudentMarksAsync();
         StudentMark GetStudentMarkAsync(int id);
-        /*
-        Task<StudentMark> AddStudentMarkAsync(StudentMark studentMark);
-        Task<StudentMark> UpdateStudentMarkAsync(StudentMark studentMark);
-        Task DeleteStudentMarkAsync(int id);
-        */
+        List<GetMarksStudent> GetStudentMarksByStudentId(int studentId);
+        List<GetMarksStudent> GetMarksByTeacherId(int teacherId);
     }
 }

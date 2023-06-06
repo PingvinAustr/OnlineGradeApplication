@@ -136,5 +136,22 @@ namespace OnlineGradeApplication_API.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpGet("GetTeachersByGroupId")]
+        public ActionResult GetTeachersByGroupId(int personId)
+        {
+            try
+            {
+                var teachers = _personRepository.GetTeachersByPersonId(personId);
+                Log.Information($"[API][Person][UserId:{CurrentUser.currentUserId}] - GetTeachersByGroupId - Success");
+                return Ok(teachers);
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"[API][Person][UserId:{CurrentUser.currentUserId}] - GetTeachersByGroupId - Fail - {ex.Message}");
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
