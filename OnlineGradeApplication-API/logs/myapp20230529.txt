@@ -1,0 +1,68 @@
+2023-05-29 20:04:22.900 +03:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2023-05-29 20:04:22.989 +03:00 [DBG] Hosting starting
+2023-05-29 20:04:23.114 +03:00 [DBG] Using development certificate: CN=localhost (Thumbprint: 35A8D47BEF9428CEE90970BDE51711F5A5D36CAB)
+2023-05-29 20:04:23.196 +03:00 [INF] Now listening on: https://localhost:7264
+2023-05-29 20:04:23.198 +03:00 [INF] Now listening on: http://localhost:5264
+2023-05-29 20:04:23.199 +03:00 [DBG] Loaded hosting startup assembly OnlineGradeApplication-API
+2023-05-29 20:04:23.199 +03:00 [DBG] Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh
+2023-05-29 20:04:23.200 +03:00 [DBG] Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net
+2023-05-29 20:04:23.203 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-05-29 20:04:23.206 +03:00 [INF] Hosting environment: Development
+2023-05-29 20:04:23.208 +03:00 [INF] Content root path: C:\Users\Yaroslav\source\repos\OnlineGradeApplication\OnlineGradeApplication-API\
+2023-05-29 20:04:23.208 +03:00 [DBG] Hosting started
+2023-05-29 20:04:23.324 +03:00 [DBG] Connection id "0HMR0CR05NEKM" accepted.
+2023-05-29 20:04:23.324 +03:00 [DBG] Connection id "0HMR0CR05NEKN" accepted.
+2023-05-29 20:04:23.325 +03:00 [DBG] Connection id "0HMR0CR05NEKM" started.
+2023-05-29 20:04:23.325 +03:00 [DBG] Connection id "0HMR0CR05NEKN" started.
+2023-05-29 20:04:24.347 +03:00 [DBG] Connection id "0HMR0CR05NEKO" accepted.
+2023-05-29 20:04:24.348 +03:00 [DBG] Connection id "0HMR0CR05NEKO" started.
+2023-05-29 20:04:24.422 +03:00 [DBG] Connection 0HMR0CR05NEKO established using the following protocol: "Tls12"
+2023-05-29 20:04:24.494 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/swagger/index.html - -
+2023-05-29 20:04:24.543 +03:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2023-05-29 20:04:24.590 +03:00 [DBG] No candidates found for the request path '/swagger/index.html'
+2023-05-29 20:04:24.593 +03:00 [DBG] Request did not match any endpoints
+2023-05-29 20:04:24.868 +03:00 [DBG] Response markup is scheduled to include browser refresh script injection.
+2023-05-29 20:04:25.309 +03:00 [DBG] Response markup was updated to include browser refresh script injection.
+2023-05-29 20:04:25.317 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/swagger/index.html - - - 200 - text/html;charset=utf-8 826.5083ms
+2023-05-29 20:04:25.428 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/_framework/aspnetcore-browser-refresh.js - -
+2023-05-29 20:04:25.437 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/_framework/aspnetcore-browser-refresh.js - - - 200 11960 application/javascript;+charset=utf-8 8.8309ms
+2023-05-29 20:04:25.976 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/swagger/v1/swagger.json - -
+2023-05-29 20:04:25.982 +03:00 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2023-05-29 20:04:25.983 +03:00 [DBG] Request did not match any endpoints
+2023-05-29 20:04:25.996 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/swagger/favicon-32x32.png - -
+2023-05-29 20:04:25.997 +03:00 [DBG] No candidates found for the request path '/swagger/favicon-32x32.png'
+2023-05-29 20:04:25.999 +03:00 [DBG] Request did not match any endpoints
+2023-05-29 20:04:26.015 +03:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2023-05-29 20:04:26.017 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/swagger/favicon-32x32.png - - - 200 628 image/png 20.5991ms
+2023-05-29 20:04:26.140 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 164.3710ms
+2023-05-29 20:04:33.357 +03:00 [DBG] Authentication of the HTTPS connection timed out.
+2023-05-29 20:04:33.357 +03:00 [DBG] Authentication of the HTTPS connection timed out.
+2023-05-29 20:04:33.360 +03:00 [DBG] Connection id "0HMR0CR05NEKM" stopped.
+2023-05-29 20:04:33.360 +03:00 [DBG] Connection id "0HMR0CR05NEKN" stopped.
+2023-05-29 20:04:33.361 +03:00 [DBG] Connection id "0HMR0CR05NEKM" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-05-29 20:04:33.361 +03:00 [DBG] Connection id "0HMR0CR05NEKN" sending FIN because: "The Socket transport's send loop completed gracefully."
+2023-05-29 20:05:20.580 +03:00 [INF] Request starting HTTP/2 GET https://localhost:7264/api/Group - -
+2023-05-29 20:05:20.591 +03:00 [DBG] 1 candidate(s) found for the request path '/api/Group'
+2023-05-29 20:05:20.597 +03:00 [DBG] Endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroups (OnlineGradeApplication-API)' with route pattern 'api/Group' is valid for the request path '/api/Group'
+2023-05-29 20:05:20.599 +03:00 [DBG] Request matched endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroups (OnlineGradeApplication-API)'
+2023-05-29 20:05:20.601 +03:00 [DBG] Static files was skipped as the request already matched an endpoint.
+2023-05-29 20:05:20.603 +03:00 [INF] Executing endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroups (OnlineGradeApplication-API)'
+2023-05-29 20:05:20.627 +03:00 [INF] Route matched with {action = "GetGroups", controller = "Group"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[OnlineGradeApplication_BLL.DTOs.GroupDTO]] GetGroups() on controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API).
+2023-05-29 20:05:20.630 +03:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2023-05-29 20:05:20.631 +03:00 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2023-05-29 20:05:20.632 +03:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2023-05-29 20:05:20.634 +03:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2023-05-29 20:05:20.636 +03:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2023-05-29 20:05:20.638 +03:00 [DBG] Executing controller factory for controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API)
+2023-05-29 20:05:20.640 +03:00 [DBG] Executed controller factory for controller OnlineGradeApplication_API.Controllers.GroupController (OnlineGradeApplication-API)
+2023-05-29 20:05:20.642 +03:00 [INF] [API][Group][UserId:0] - GetGroups - Success
+2023-05-29 20:05:21.963 +03:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2023-05-29 20:05:21.966 +03:00 [DBG] Attempting to select an output formatter based on Accept header '["text/plain"]'.
+2023-05-29 20:05:21.967 +03:00 [DBG] Could not find an output formatter based on content negotiation. Accepted types were (["text/plain"])
+2023-05-29 20:05:21.968 +03:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2023-05-29 20:05:21.969 +03:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2023-05-29 20:05:21.970 +03:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2023-05-29 20:05:21.971 +03:00 [INF] Executing ObjectResult, writing value of type 'System.Collections.Generic.List`1[[OnlineGradeApplication_BLL.DTOs.GroupDTO, OnlineGradeApplication-BLL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-05-29 20:05:21.995 +03:00 [INF] Executed action OnlineGradeApplication_API.Controllers.GroupController.GetGroups (OnlineGradeApplication-API) in 1353.5634ms
+2023-05-29 20:05:21.996 +03:00 [INF] Executed endpoint 'OnlineGradeApplication_API.Controllers.GroupController.GetGroups (OnlineGradeApplication-API)'
+2023-05-29 20:05:21.997 +03:00 [INF] Request finished HTTP/2 GET https://localhost:7264/api/Group - - - 200 - application/json;+charset=utf-8 1417.6506ms

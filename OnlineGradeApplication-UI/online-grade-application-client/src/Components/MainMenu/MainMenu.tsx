@@ -13,11 +13,13 @@ import Groups from "../Groups/Groups";
 import SystemAccesses from "../SystemAccesses/SystemAccesses";
 import GroupList from "../GroupList/GroupList";
 import Cookies from "js-cookie";
+import UserInfo from "../UserInfo/UserInfo";
+import StudentTeachers from "../Teachers/StudentTeachers";
+import Assignments from "../Assignments/Assignments";
+import Marks from '../Marks/Marks';
 const { Sider, Content } = Layout;
 
 
-
-const userAvatar = require("../../assets/media/avatars/man1.png");
 
 const MainMenu: React.FC = () => {
     const { userId, userRoleId, setUserId, setUserRoleId } = useAuth(); // Destructure setUserId and setUserRoleId
@@ -43,8 +45,14 @@ const MainMenu: React.FC = () => {
                 return  <SystemAccesses/>
             case 'GroupList':
                 return <GroupList/>
+            case 'StudentTeachers':
+                return <StudentTeachers/>
+            case 'Assignments':
+                return <Assignments/>
+            case 'Marks':
+                return <Marks/>
             default:
-                return null;
+                return <UserInfo userIdPassed={parseInt(Cookies.get("userId") as string)} userRoleIdPassed={parseInt(Cookies.get("userRoleId") as string)}/>;
         }
     };
 
@@ -75,11 +83,12 @@ const MainMenu: React.FC = () => {
         if (userRoleId === BaseTSConstants.StudentRoleId) {
             return (
                 <>
-                    <Menu.Item key="1">Оцінки</Menu.Item>
-                    <Menu.Item key="2">Завдання</Menu.Item>
+                    <Menu.Item key="Marks">Оцінки</Menu.Item>
+                    <Menu.Item key="Assignments">Завдання</Menu.Item>
                     <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
-                    <Menu.Item key="4">Викладачі</Menu.Item>
+                    <Menu.Item key="StudentTeachers">Викладачі</Menu.Item>
                     <Menu.Item key="GroupList">Список групи</Menu.Item>
+                    <Menu.Item key="x">Мій профіль</Menu.Item>
                 </>
             );
         } else if (userRoleId === BaseTSConstants.TeacherRoleId) {
@@ -88,8 +97,9 @@ const MainMenu: React.FC = () => {
                     <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
                     <Menu.Item key="Students">Студенти</Menu.Item>
                     <Menu.Item key="Groups">Групи</Menu.Item>
-                    <Menu.Item key="4">Завдання</Menu.Item>
-                    <Menu.Item key="5">Оцінки</Menu.Item>
+                    <Menu.Item key="Assignments">Завдання</Menu.Item>
+                    <Menu.Item key="Marks">Оцінки</Menu.Item>
+                    <Menu.Item key="x">Мій профіль</Menu.Item>
                 </>
             );
         }
@@ -99,9 +109,8 @@ const MainMenu: React.FC = () => {
                     <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
                     <Menu.Item key="Students">Студенти</Menu.Item>
                     <Menu.Item key="Groups">Групи</Menu.Item>
-                    <Menu.Item key="4">Завдання</Menu.Item>
-                    <Menu.Item key="5">Оцінки</Menu.Item>
                     <Menu.Item key="SystemAccesses">Користувачі системи</Menu.Item>
+                    <Menu.Item key="x">Мій профіль</Menu.Item>
                 </>
             );
         }
@@ -111,9 +120,8 @@ const MainMenu: React.FC = () => {
                     <Menu.Item key="Disciplines">Дисципліни</Menu.Item>
                     <Menu.Item key="Students">Студенти</Menu.Item>
                     <Menu.Item key="Groups">Групи</Menu.Item>
-                    <Menu.Item key="4">Завдання</Menu.Item>
-                    <Menu.Item key="5">Оцінки</Menu.Item>
                     <Menu.Item key="SystemAccesses">Користувачі системи</Menu.Item>
+                    <Menu.Item key="x">Мій профіль</Menu.Item>
                 </>
             );
         }
@@ -131,9 +139,17 @@ const MainMenu: React.FC = () => {
 
     const menu = (
         <AntMenu>
-            <AntMenu.Item onClick={onUserLogout}>Log out</AntMenu.Item>
+            <AntMenu.Item onClick={onUserLogout}>Вийти</AntMenu.Item>
         </AntMenu>
     );
+
+    const [showUserInfo, setShowUserInfo] = useState(false);
+
+    const handleUserInfoClick = () => {
+        Cookies.set('lastTab', "");
+        let lastTab:string = Cookies.get('lastTab') as string;
+        setSelectedMenuItem(lastTab);
+    };
 
     return (
         <Layout style={{ minHeight: '100vh', width:'100vw' }}>
@@ -146,7 +162,7 @@ const MainMenu: React.FC = () => {
             <Layout>
                 <div id={"currentTabHeading"}>
                     <div className={'currentUserBlock'}>Привіт, {userName}!
-                        <img src={userAvatar}/>
+                        <img style={{cursor:"pointer"}} onClick={handleUserInfoClick} src={require("../../assets/media/avatars/"  + Cookies.get("userId") + ".png")}/>
                         <Dropdown overlay={menu} placement="bottomRight">
                             <a className="ant-dropdown-link" onClick={(e) => e.preventDefault()}>
                                 <DownOutlined />

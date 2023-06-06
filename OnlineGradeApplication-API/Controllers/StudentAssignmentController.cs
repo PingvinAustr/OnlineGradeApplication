@@ -46,5 +46,33 @@ namespace OnlineGradeApplication_API.Controllers
             return Ok(studentAssignment);
 
         }
+
+        [HttpGet("GetStudentAssignmentsByStudentId")]
+        public ActionResult<OnlineGradeApplication_BLL.Responses.StudentAssignmentResponse> GetStudentAssignmentsByStudentId(int studentId)
+        {
+            try
+            {
+                var studentAddignments = _studentAssignmentRepository.GetStudentAssignmentsByStudentId(studentId);
+                return Ok(studentAddignments);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        
+        [HttpGet("GetTeacherAssignmentsByTeacherId")]
+        public ActionResult<OnlineGradeApplication_BLL.Responses.StudentAssignmentResponse> GetTeacherAssignmentsByTeacherId(int teacherId)
+        {
+            try
+            {
+                var studentAddignments = _studentAssignmentRepository.GetTeacherAssignmentsByStudentId(teacherId);
+                return Ok(studentAddignments);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

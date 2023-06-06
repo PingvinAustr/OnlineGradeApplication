@@ -4,6 +4,10 @@
     justify-content: space-between;
 }
 
+.disciplineHeading h2{
+    margin: 10px 0 0 10px;
+}
+
 .crudButtonsContainer{
     display: flex;
     align-items: center;

@@ -43,7 +43,19 @@ namespace OnlineGradeApplication_API.Controllers
             }
             Log.Information($"[API][TeacherCard][UserId:{CurrentUser.currentUserId}] - GetTeacherCardAsync - Success");
             return Ok(teacherCard);
+        }
 
+        [HttpGet("GetTeacherCardByTeacherId")]
+        public ActionResult<OnlineGradeApplication_BLL.DTOs.TeacherCardDTO> GetTeacherCardByTeacherId(int id)
+        {
+            var teacherCard = _teacherCardRepository.GetTeacherCardsAsync().Where(x=>x.TeacherId == id);
+            if (teacherCard == null)
+            {
+                Log.Warning($"[API][TeacherCard][UserId:{CurrentUser.currentUserId}] - GetTeacherCardByTeacherId - NotFound");
+                return NotFound();
+            }
+            Log.Information($"[API][TeacherCard][UserId:{CurrentUser.currentUserId}] - GetTeacherCardByTeacherId - Success");
+            return Ok(teacherCard);
         }
     }
 }

@@ -17,10 +17,5 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
             var studentsGroup = _context.StudentsGroups.FirstOrDefault(x => x.Id == id);
             return studentsGroup;
         }
-        /*
-        Task<Role> AddRoleAsync(Role role);
-        Task<Role> UpdateRoleAsync(Role role);
-        Task DeleteRoleAsync(int id);
-        */
     }
 }

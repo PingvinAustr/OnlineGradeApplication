@@ -69,10 +69,22 @@ namespace OnlineGradeApplication_DAL.Interfaces.Implementations
             return getStudentsResponses;
         }
 
-        /*
-        Task<Role> AddRoleAsync(Role role);
-        Task<Role> UpdateRoleAsync(Role role);
-        Task DeleteRoleAsync(int id);
-        */
+        public List<GetTeachersByStudentId> GetTeachersByPersonId(int personId)
+        {
+            var _context = new OnlineGradesDbContext();
+
+            int? currentStudentGroupId = _context.StudentsGroups.Where(x=>x.StudentId == personId).FirstOrDefault()?.GroupId;
+
+            List<GetTeachersByStudentId> getTeachersResponse = new List<GetTeachersByStudentId>();
+            foreach (var item in _context.TeachersGroups.ToList())
+            {
+                if (item.GroupId == currentStudentGroupId)
+                {
+                    GetTeachersByStudentId getTeachersByStudentId = new GetTeachersByStudentId() { teacherId = item.TeacherId, teacher = _context.Persons.Where(x=>x.Id == item.TeacherId).FirstOrDefault(), discipline = _context.Disciplines.Where(x=>x.Id==item.DisciplineId).FirstOrDefault()};
+                    getTeachersResponse.Add(getTeachersByStudentId);
+                }
+            }
+            return getTeachersResponse;
+        }
     }
 }

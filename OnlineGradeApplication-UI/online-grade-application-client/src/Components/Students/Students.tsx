@@ -57,10 +57,10 @@ const Students: React.FC = () => {
     };
 
     const columns = [
-        { title: 'First Name', dataIndex: 'firstName', key: 'firstName' },
-        { title: 'Last Name', dataIndex: 'lastName', key: 'lastName' },
-        { title: 'Age', dataIndex: 'age', key: 'age' },
-        { title: 'Group', dataIndex: ['group', 'groupName'], key: 'group' },
+        { title: 'Ім\'я', dataIndex: 'firstName', key: 'firstName' },
+        { title: 'Прізвище', dataIndex: 'lastName', key: 'lastName' },
+        { title: 'Вік', dataIndex: 'age', key: 'age' },
+        { title: 'Група', dataIndex: ['group', 'groupName'], key: 'group' },
     ];
 
     return (
@@ -69,8 +69,8 @@ const Students: React.FC = () => {
             <div className="disciplineHeading">
                 <h2>Студенти</h2>
                 <div className="crudButtonsContainer">
-                <Button type="primary"  style={{ marginRight: '10px' }} onClick={onAddButtonClick}>Add Student</Button>
-                <Button type="primary" style={{ marginRight: '10px' }} onClick={onEditButtonClick}>Edit Student</Button>
+                <Button type="primary"  style={{ marginRight: '10px' }} onClick={onAddButtonClick}>Додати</Button>
+                <Button type="primary" style={{ marginRight: '10px' }} onClick={onEditButtonClick}>Редагувати</Button>
                 </div>
             </div>
             <Table dataSource={students} columns={columns} rowKey="id" rowSelection={rowSelection} />

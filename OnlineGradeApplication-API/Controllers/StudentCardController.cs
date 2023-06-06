@@ -46,5 +46,19 @@ namespace OnlineGradeApplication_API.Controllers
             return Ok(studentCard);
 
         }
+        
+        [HttpGet("GetStudentCardByStudentId")]
+        public ActionResult<OnlineGradeApplication_BLL.DTOs.StudentCardDTO> GetStudentCardByStudentId(int id)
+        {
+            var studentCard = _studentCardRepository.GetStudentCardsAsync().Where(x=>x.StudentId == id);
+            if (studentCard == null)
+            {
+                Log.Warning($"[API][StudentCard][UserId:{CurrentUser.currentUserId}] - GetStudentCardByStudentId - NotFound with id={id}");
+                return NotFound();
+            }
+            Log.Information($"[API][StudentCard][UserId:{CurrentUser.currentUserId}] - GetStudentCardByStudentId - Success");
+            return Ok(studentCard);
+
+        }
     }
 }

@@ -53,5 +53,12 @@ namespace OnlineGradeApplication_BLL.Interfaces.Implementations
             List<GetStudentsResponse> list = _PersonMapper.Map<List<OnlineGradeApplication_DAL.Responses.GetStudentsResponse>, List<GetStudentsResponse>>(data);
             return list;
         }
+
+        public List<GetTeachersByStudentId> GetTeachersByPersonId(int personId)
+        {
+            var data = _person.GetTeachersByPersonId(personId);
+            List<GetTeachersByStudentId> response = _PersonMapper.Map<List<OnlineGradeApplication_DAL.Responses.GetTeachersByStudentId>,List<GetTeachersByStudentId>>(data);
+            return response;
+        }
     }
 }

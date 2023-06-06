@@ -11,5 +11,7 @@ namespace OnlineGradeApplication_BLL.Interfaces.Abstractions
         void EditPerson(int id, string firstName, string lastName, int age, int role, int systemAccess);
         List<GetStudentsResponse> GetStudents();
         List<GetStudentsResponse> GetStudentByGroupId(int groupId);
+
+        List<GetTeachersByStudentId> GetTeachersByPersonId(int personId);
     }
 }

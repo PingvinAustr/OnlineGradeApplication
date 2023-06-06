@@ -11,6 +11,8 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
         void EditPerson(int id, string firstName, string lastName, int age, int role, int systemAccess);
         List<GetStudentsResponse> GetStudents();
         List<GetStudentsResponse> GetStudentByGroupId(int groupId);
+
+        List<GetTeachersByStudentId> GetTeachersByPersonId(int personId);
         /*
         Task<Person> AddPersonAsync(Person person);
         Task<Person> UpdatePersonAsync(Person person);

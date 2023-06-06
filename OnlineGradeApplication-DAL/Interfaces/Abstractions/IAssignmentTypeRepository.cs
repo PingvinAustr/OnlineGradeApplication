@@ -6,10 +6,5 @@ namespace OnlineGradeApplication_DAL.Interfaces.Abstractions
     {
         List<AssignmentType> GetAssignmentTypesAsync();
         AssignmentType GetAssignmentTypeAsync(int id);
-        /*
-        Task AddAssignmentTypeAsync(AssignmentType assignmentType);
-        Task UpdateAssignmentTypeAsync(AssignmentType assignmentType);
-        Task DeleteAssignmentTypeAsync(int id);
-        */
     }
 }

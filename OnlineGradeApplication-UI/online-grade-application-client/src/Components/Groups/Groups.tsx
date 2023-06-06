@@ -62,9 +62,9 @@ const Groups: React.FC = () => {
     };
 
     const columns = [
-        { title: 'Group Name', dataIndex: 'groupName', key: 'groupName' },
-        { title: 'Year', dataIndex: 'year', key: 'year' },
-        { title: 'Cafedra', dataIndex: ['cafedra', 'cafedraName'], key: 'cafedra' },
+        { title: 'Назва групи', dataIndex: 'groupName', key: 'groupName' },
+        { title: 'Рік вступу', dataIndex: 'year', key: 'year' },
+        { title: 'Кафедра', dataIndex: ['cafedra', 'cafedraName'], key: 'cafedra' },
     ];
 
     return (
@@ -72,9 +72,9 @@ const Groups: React.FC = () => {
             <div className="disciplineHeading">
                 <h2>Групи</h2>
                 <div className="crudButtonsContainer">
-                    <Button style={{ marginRight: '10px' }} type="primary" onClick={onAddButtonClick}>Add Group</Button>
-                    <Button style={{ marginRight: '10px' }} type="primary" onClick={onEditButtonClick}>Edit Group</Button>
-                    <Button type="primary" danger onClick={onDeleteButtonClick}>Delete Group</Button>
+                    <Button style={{ marginRight: '10px' }} type="primary" onClick={onAddButtonClick}>Додати</Button>
+                    <Button style={{ marginRight: '10px' }} type="primary" onClick={onEditButtonClick}>Редагувати</Button>
+                    <Button type="primary" danger onClick={onDeleteButtonClick}>Видалити</Button>
                 </div>
             </div>
             <Table dataSource={groups} columns={columns} rowKey="id" rowSelection={rowSelection} />

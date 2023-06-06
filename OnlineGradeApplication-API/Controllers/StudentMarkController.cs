@@ -44,5 +44,33 @@ namespace OnlineGradeApplication_API.Controllers
             Log.Information($"[API][StudentMark][UserId:{CurrentUser.currentUserId}] - GetStudentMarkAsync - Success");
             return Ok(studentMark);
         }
+
+        [HttpGet("GetMarksByStudentId")]
+        public ActionResult<OnlineGradeApplication_BLL.Responses.GetMarksStudent> GetMarksByStudentId(int id)
+        {
+            try
+            {
+                var data = _studentMarkRepository.GetStudentMarksByStudentId(id);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetMarksByTeacherId")]
+        public ActionResult<OnlineGradeApplication_BLL.Responses.GetMarksStudent> GetMarksByTeacherId(int teacherId)
+        {
+            try
+            {
+                var data = _studentMarkRepository.GetMarksByTeacherId(teacherId);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

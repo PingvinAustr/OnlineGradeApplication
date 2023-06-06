@@ -80,9 +80,9 @@ const SystemAccesses: React.FC = () => {
             <div className="disciplineHeading">
                 <h2>Користувачі системи</h2>
                 <div className="crudButtonsContainer">
-            <Button type="primary" style={{ marginRight: '10px' }} onClick={onAddButtonClick}>Add System Access</Button>
-            <Button type="primary" style={{ marginRight: '10px' }} onClick={onEditButtonClick}>Edit System Access</Button>
-            <Button type="primary" danger onClick={onDeleteButtonClick}>Delete System Access</Button>
+            <Button type="primary" style={{ marginRight: '10px' }} onClick={onAddButtonClick}>Додати</Button>
+            <Button type="primary" style={{ marginRight: '10px' }} onClick={onEditButtonClick}>Редагувати</Button>
+            <Button type="primary" danger onClick={onDeleteButtonClick}>Видалити</Button>
                 </div>
             </div>
             <Table dataSource={systemAccesses} columns={columns}  rowKey={record => record.systemAccess.id}  rowSelection={rowSelection}/>

@@ -19,8 +19,6 @@ const Disciplines: React.FC = () => {
     const [addingRecord, setAddingRecord] = useState(false);
     const [addModalVisible, setAddModalVisible] = useState(false); // New state for Add Modal
 
-
-
     const onSelectChange = (selectedKeys: React.Key[]) => {
         setSelectedRowKeys(selectedKeys);
     };
@@ -29,7 +27,6 @@ const Disciplines: React.FC = () => {
         setAddingRecord(true);
         setAddModalVisible(true);
     };
-
 
     const rowSelection = {
         selectedRowKeys,
@@ -40,9 +37,9 @@ const Disciplines: React.FC = () => {
         if (userRoleId === 1 || userRoleId === 2) {
             return (
                 <>
-                    <Button type="primary" style={{ marginRight: '10px' }} onClick={onAddButtonClick}>Add</Button>
-                    <Button type="primary" style={{ marginRight: '10px' }} danger onClick={onDeleteButtonClick}>Delete</Button>
-                    <Button type="primary" onClick={onEditButtonClick}>Edit</Button>
+                    <Button type="primary" style={{ marginRight: '10px' }} onClick={onAddButtonClick}>Додати</Button>
+                    <Button type="primary" style={{ marginRight: '10px' }} danger onClick={onDeleteButtonClick}>Видалити</Button>
+                    <Button type="primary" onClick={onEditButtonClick}>Редагувати</Button>
                 </>
             );
         }
@@ -70,7 +67,6 @@ const Disciplines: React.FC = () => {
 
     useEffect(() => {
         if (editingRecord) {
-            // Handle your editing logic here, for example, open a modal or navigate to another page
             console.log('Editing record:', editingRecord);
         }
     }, [editingRecord]);
@@ -78,11 +74,8 @@ const Disciplines: React.FC = () => {
     const onDeleteButtonClick = async () => {
         if (selectedRowKeys.length > 0) {
             try {
-                // You can use Promise.all to delete all selected entries concurrently
                 await Promise.all(selectedRowKeys.map(key => deleteGroupTeacherDisciplineEntry(parseInt(key.toString()))));
-                // Clear the selected row keys
                 setSelectedRowKeys([]);
-                // Fetch the updated list of disciplines
                 fetchDisciplines();
             } catch (error) {
                 console.error('Error deleting entries:', error);
